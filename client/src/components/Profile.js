@@ -4,15 +4,18 @@ import { Icon } from 'react-icons-kit';
 import { mapPin } from 'react-icons-kit/feather/mapPin';
 import { calendar } from 'react-icons-kit/feather/calendar';
 import { CurrentUserContext } from '../contexts/CurrentUser.context';
-import { useParams } from 'react-router';
-
+import { useParams } from 'react-router-dom';
+import { OtherUserContext } from '../contexts/OtherUser.context';
 
 function Profile() {
+  
+  const { otherUserState,
+    actions: { handleUserProfile }
+  } = useContext(OtherUserContext)
 
   const { currentUserState,
-    actions: { handleUserProfile }
   } = useContext(CurrentUserContext)
-  console.log(currentUserState)
+
   const { bannerSrc,
     avatarSrc,
     displayName,
@@ -22,11 +25,12 @@ function Profile() {
     numFollowing,
     numFollowers,
     handle
-  } = currentUserState.currentUser;
+  } = currentUserState.currentUser.profile;
 
-  
+
 
   const { profileId } = useParams();
+
   useEffect(() => {
     fetch(`/api/${profileId}/profile`)
       .then(res => res.json())

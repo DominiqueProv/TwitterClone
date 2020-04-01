@@ -9,7 +9,10 @@ const TweetCard = ({ feedList }) => {
   
   return (
     <Wrapper data-name='wrapper'>
-      {feedList.map(tweet => (
+      {feedList.map(tweet => {
+
+        console.log(tweet)
+        return(
         <div data-name='box' 
              key={tweet.id} 
              style={{ borderBottom: "1px solid #F4F7F6", padding: '7px 0' }}
@@ -40,7 +43,8 @@ const TweetCard = ({ feedList }) => {
             </div>
           </Content>
         </div>
-      ))}
+      )}
+    )}
     </Wrapper>
 
   )

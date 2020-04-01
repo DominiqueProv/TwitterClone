@@ -14,10 +14,10 @@ import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import { CurrentUserContext } from './contexts/CurrentUser.context';
 import { CurrentFeedContext } from './contexts/CurrentFeed.context';
+import { useParams } from 'react-router';
 
 
 function App() {
-
 
   const {
     currentUserState,
@@ -34,8 +34,8 @@ function App() {
     fetch(`/api/me/profile`)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        // handleUserLogIn(data)
+        // console.log(data)
+        handleUserLogIn(data)
       });
   }, []);
 
@@ -71,7 +71,7 @@ function App() {
               <TweetDetails />
             </Route>
             <Route exact path='/:profileId'>
-              {currentUserState.isLoaded && <Profile />}
+              {currentUserState.isLoaded && <Profile/>}
             </Route>
           </Switch>
         </div>

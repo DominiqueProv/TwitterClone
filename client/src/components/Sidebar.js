@@ -1,31 +1,33 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import {ReactComponent as Logo} from '../assets/logo.svg';
-import {home} from 'react-icons-kit/feather/home';
-import {user} from 'react-icons-kit/feather/user';
-import {bell} from 'react-icons-kit/feather/bell';
-import {bookmark} from 'react-icons-kit/feather/bookmark';
-import { Icon } from 'react-icons-kit'
+import { ReactComponent as Logo } from '../assets/logo.svg';
+import { home } from 'react-icons-kit/feather/home';
+import { user } from 'react-icons-kit/feather/user';
+import { bell } from 'react-icons-kit/feather/bell';
+import { bookmark } from 'react-icons-kit/feather/bookmark';
+import { Icon } from 'react-icons-kit';
 
 
 
 const Sidebar = () => {
 
+
+  
+
+
   return (
     <Wrapper>
-    <Logo style={{width:"60px", marginLeft:"10px"}}/>
-    
-    <ul>
-        <li> <NavLink exact to="/"><Icon style={{paddingRight: '10px'}} icon={home} size={20}/>Home</NavLink></li>
-        <li> <NavLink exact to="/Profile"><Icon style={{paddingRight: '10px'}} icon={user} size={20}/>Profile</NavLink> </li>
-        <li> <NavLink exact to="/Notifications"><Icon style={{paddingRight: '10px'}} icon={bell} size={20}/>Notifications</NavLink> </li>
-        <li> <NavLink exact to="/Bookmarks"><Icon style={{paddingRight: '10px'}} icon={bookmark} size={20}/>Bookmarks</NavLink> </li>
+      <Logo style={{ width: "60px", marginLeft: "10px" }} />
+      <ul>
+        <li> <NavLink exact to="/"><Icon style={{ paddingRight: '10px' }} icon={home} size={20} />Home</NavLink></li>
+        <li> <NavLink exact to="/Profile"><Icon style={{ paddingRight: '10px' }} icon={user} size={20} />Profile</NavLink> </li>
+        <li> <NavLink exact to="/Notifications"><Icon style={{ paddingRight: '10px' }} icon={bell} size={20} />Notifications</NavLink> </li>
+        <li> <NavLink exact to="/Bookmarks"><Icon style={{ paddingRight: '10px' }} icon={bookmark} size={20} />Bookmarks</NavLink> </li>
         <li> <Button>Meow</Button></li>
-    </ul>
+      </ul>
     </Wrapper>
-);
+  );
 }
 
 const Wrapper = styled.div`

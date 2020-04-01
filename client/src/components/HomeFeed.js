@@ -5,7 +5,6 @@ import TweetCard from './TweetCard';
 function HomeFeed() {
 
   const { currentFeedState } = useContext(CurrentFeedContext);
-
   const tweetFeed = currentFeedState.currentFeed.tweetsById;
   
   return (

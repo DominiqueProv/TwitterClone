@@ -12,8 +12,7 @@ function currentUserReducer(state, action) {
   switch (action.type) {
     case 'received-my-profile':
       return { ...state, currentUser: action.payload.data, status: 'logged In', isLoaded: true }
-    case 'received-user-profile':
-      return { ...state, currentUser: action.payload.data, }
+    
     default:
       throw new Error('Should not get there!');
   }
@@ -29,19 +28,12 @@ export function CurrentUserProvider({ children }) {
       payload: { data }
     });
   };
-  const handleUserProfile = (data) => {
-    dispatch({
-      type: 'received-user-profile',
-      payload: { data }
-    });
-  };
 
   return (
     <CurrentUserContext.Provider value={{
       currentUserState,
       actions: {
         handleUserLogIn,
-        handleUserProfile
       }
     }}>
       {children}
