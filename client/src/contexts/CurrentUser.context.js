@@ -4,9 +4,10 @@ export const CurrentUserContext = createContext();
 
 const initialState = {
   currentUser: null,
-  status: 'loading',
+  status: 'idle',
   isLoaded: false
 };
+
 
 function currentUserReducer(state, action) {
   switch (action.type) {

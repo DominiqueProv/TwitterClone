@@ -29,7 +29,6 @@ router.get('/api/:handle/profile', (req, res) => {
       return res.status(400).json({ error: 'user-not-found' });
     }
   }
-
   return res.json({
     profile,
   });

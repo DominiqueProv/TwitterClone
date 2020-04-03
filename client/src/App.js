@@ -14,7 +14,6 @@ import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import { CurrentUserContext } from './contexts/CurrentUser.context';
 import { CurrentFeedContext } from './contexts/CurrentFeed.context';
-import { useParams } from 'react-router';
 
 
 function App() {
@@ -37,10 +36,7 @@ function App() {
         // console.log(data)
         handleUserLogIn(data)
       });
-  }, []);
-
-
-  useEffect(() => {
+  
     fetch("/api/me/home-feed")
       .then(res => res.json())
       .then(data => {
@@ -54,7 +50,7 @@ function App() {
     <Router>
       <Wrapper>
         <div>
-          <Sidebar />
+          <Sidebar/>
         </div>
         <div>
           <Switch>
@@ -68,10 +64,10 @@ function App() {
               <Bookmarks />
             </Route>
             <Route exact path='/tweet/:tweetId'>
-              <TweetDetails />
+              {currentFeedState.isLoaded && <TweetDetails />}
             </Route>
             <Route exact path='/:profileId'>
-              {currentUserState.isLoaded && <Profile/>}
+              {currentUserState.isLoaded && <Profile />}
             </Route>
           </Switch>
         </div>
@@ -83,8 +79,11 @@ function App() {
 
 const Wrapper = styled.div`
   display: flex;
-  width: 70vw;
+  width: 800px;
   margin: 0 auto;
+  @media (max-width: 850px) {
+  width: 665px;
+  }
 `
 
 export default App;

@@ -8,6 +8,12 @@ const GlobalStyles = createGlobalStyle`
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      text-decoration: none;
+
+    }
+    
+    h1{
+      font-size: 30px;
     }
 
     p {

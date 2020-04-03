@@ -6,27 +6,16 @@ import ActionBox from './ActionBox';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
-const TweetCard = ({ tweet }) => {
-  // console.log(tweet)
+const TweetDetailCard = ({ tweet }) => {
   let history = useHistory();
+  console.log(tweet)
 
-  function handleClick(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
+  function handleClick() {
     history.push(`/${tweet.author.handle}`);
   }
-
-  function handleDetailTweet(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    history.push(`/tweet/${tweet.id}`);
-  }
-
+// 
   return (
-    // <Link to={`/tweet/${tweet.id}`}>
-    <Wrapper onClick={ev => { handleDetailTweet(ev) }} data-name='wrapper'
-      //  tabIndex="0" 
-      aria-label='View tweet'>
+    <Wrapper data-name='wrapper' tabIndex="0" aria-label='View tweet'>
       <div data-name='box'
         key={tweet.id}
         style={{ borderBottom: "1px solid #e6ecf0", padding: '12px 0' }}
@@ -44,32 +33,26 @@ const TweetCard = ({ tweet }) => {
           </div>
           <div>
             <p style={{ padding: '0 0 7px 0' }}>
-              <a onClick={ev => { handleClick(ev) }}
-                style={{ fontWeight: '700' }}>{tweet.author.displayName}</a>
+              <a onClick={handleClick}
+                style={{ fontWeight: '700', cursor: 'pointer' }}>{tweet.author.displayName}</a>
               <span style={{ color: 'gray', paddingLeft: '10px' }}>@{tweet.author.handle} • {tweet.timestamp}</span>
             </p>
             <p style={{ width: '480px' }}>{tweet.status}</p>
             {tweet.media.length > 0 &&
-              <ImageWrapper>
                 <MainPic src={tweet.media[0].url}
                   alt='img' />
-              </ImageWrapper>
             }
-            <ActionBox tweetId={tweet.id}
-                       tweetLiked={tweet.isLiked}
-                       tweetReweet={tweet.isRetweeted} />
+            <ActionBox tweetId={tweet.id} />
           </div>
         </Content>
       </div>
     </Wrapper>
-    // </Link>
   )
 }
 const Content = styled.div`
   display: flex;
   width: 480px;
   margin: 10px 20px;
-  z-index: 2;
   p{
     font-size: .9em;
   }
@@ -80,30 +63,19 @@ const Content = styled.div`
   }
 `
 
-const ImageWrapper = styled.div`
-    height: 300px;
-    overflow: hidden;
-    border-radius: 12px;
-`
-
 const Wrapper = styled.div`
-  width: 600px;
+  /* width: 600px; */
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #e6ecf0;
-  border-right: 1px solid #e6ecf0;
-  transition: all .3s ease-in;
-  cursor: pointer;
+  /* border-left: 1px solid #F4F7F6;
+  border-right: 1px solid #F4F7F6; */
   color: grey;
-    &:hover{
-      background-color:#F5F8FA;
-    }
     
 `
 const MainPic = styled.img`
     width: 480px;
     margin: 15px 0px 10px 0;
-    border-radius: 18px;
+    border-radius: 12px;
 `
 
 const Avatar = styled.img`
@@ -111,4 +83,4 @@ const Avatar = styled.img`
  border-radius: 50%;
  margin-right: 20px;
 `
-export default TweetCard
+export default TweetDetailCard
