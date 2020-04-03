@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { messageCircle } from 'react-icons-kit/feather/messageCircle';
 import { repeat } from 'react-icons-kit/feather/repeat';

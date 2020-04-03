@@ -14,32 +14,42 @@ function Profile() {
   const [profileData, setProfileData] = useState({});
   const [profileTweet, setProfileTweetData] = useState({});
 
+  // const [follow, setFollow] = useState({})
+
   useEffect(() => {
     fetch(`/api/${profileId}/profile`)
       .then(res => res.json())
       .then(data => {
         setProfileData(data);
-      }).catch(function() {
+      }).catch(function () {
         console.log("error");
-    });
+      });
 
     fetch(`/api/${profileId}/feed`)
       .then(res => res.json())
       .then(data => {
         setProfileTweetData(data);
-      }).catch(function() {
+      }).catch(function () {
         console.log("error");
-    });
+      });
   }, [profileId]);
 
 
+  // isBeingFollowedByYou
+
+  // let followedByMe = {};
+  // if (!follow === false) {
+  //   followedByMe = { color: '#17bf63' };
+  // }
   return (
     <>
-      {profileData.profile ? (
+      {profileData.profile && profileTweet.tweetsById ? (
         <Wrapper>
           <Title>
             <Link to={'/'}><IconArrow size={20} icon={arrowLeft} /></Link>
-            <h1>{profileData.profile.displayName}</h1>
+            <h1 style={{lineHeight: '20px'}}>{profileData.profile.displayName}<br/> 
+            <TweetCount>{Object.keys(profileTweet.tweetsById).length} Tweets</TweetCount>
+            </h1>
           </Title>
           <div>
             <HeroBanner src={profileData.profile.bannerSrc} alt='hero banner' />
@@ -48,21 +58,33 @@ function Profile() {
           <div style={{ textAlign: "right" }}>
             <FollowingButton>Following</FollowingButton>
           </div>
-          <div style={{ margin: '15px 0 0 15px' }}>
+          <div style={{ margin: '0 0 0 15px' }}>
             <h2>{profileData.profile.displayName}</h2>
-            <p style={{ paddingBottom: '10px' }}>@{profileData.profile.handle}
-              <FollowYou>Follows you</FollowYou></p>
-            <p style={{ paddingBottom: '10px' }}>Best friend with @{profileData.profile.handle}</p>
+            <p style={{ paddingBottom: '10px' }}>@{profileData.profile.handle}</p>
+            {/* <FollowYou>Follows you</FollowYou> */}
+            {/* <p style={{ paddingBottom: '10px' }}>Best friend with @{profileData.profile.handle}</p> */}
             <InfoIcon>
-              <div><Icon size={15} icon={mapPin} /> {profileData.profile.location}</div>
-              <div><Icon style={{ paddingLeft: '30px' }} size={15} icon={calendar} /> Joined {profileData.profile.joined}</div>
-            </InfoIcon>
-            <div style={{ display: 'flex', margin: '10px 0 0 0' }}>
-              <div style={{ marginRight: '30px' }}>
-                <p>{profileData.profile.numFollowing} Following</p>
+              <div>
+                <Icon size={15} icon={mapPin} /> {profileData.profile.location}
               </div>
               <div>
-                <p>{profileData.profile.numFollowers} Followers</p>
+                <Icon style={{ paddingLeft: '30px' }} size={15} icon={calendar} /> Joined {profileData.profile.joined}
+              </div>
+            </InfoIcon>
+            <div style={{ display: 'flex', margin: '20px 0 0 0' }}>
+              <div style={{ marginRight: '30px' }}>
+                <p>
+                 <LinkFollow to = '/Following'> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
+                  Following </LinkFollow>
+                  </p>
+              </div>
+              <div>
+                <p>
+                <LinkFollow to = '/Following'>
+                  <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowers} </span>
+                Followers
+                </LinkFollow>
+                </p>
               </div>
             </div>
           </div>
@@ -83,7 +105,7 @@ function Profile() {
             {
               Object.values(profileTweet.tweetsById).map(tweet => (
                 <TweetCard tweet={tweet}
-                            key={tweet.id}
+                  key={tweet.id}
                 />
               ))}
           </div>
@@ -127,25 +149,31 @@ const HeroBanner = styled.img`
 width: 598px;
 `
 const Avatar = styled.img`
-width: 120px;
+width: 142px;
 border-radius: 50%;
 border: 4px solid white;
 position: absolute;
 bottom: -55px;
-left: 30px;
+left: 10px;
 `
 
-const FollowYou = styled.span`
-color: gray;
-font-size: .7em;
-background-color: #eaeaea;
-padding: 2px 4px;
-border-radius: 3px;
-`
+// const FollowYou = styled.span`
+// color: gray;
+// font-size: .7em;
+// background-color: #eaeaea;
+// padding: 2px 4px;
+// border-radius: 3px;
+// `
 const InfoIcon = styled.div`
 display: flex;
 align-items: center;
 `
+const TweetCount = styled.span`
+font-size: .5em;
+font-weight: 400;
+color: gray;
+`
+
 
 const FollowingButton = styled.button`
 color: white;
@@ -160,7 +188,7 @@ color: white;
   cursor: pointer;
 `
 const Title = styled.div`
-  padding: 20px 15px;
+  padding: 10px;
   border-left: 1px solid #F4F7F6;
   border-right: 1px solid #F4F7F6;
   border-bottom: 2px solid #F4F7F6;
@@ -177,6 +205,12 @@ transition: all .2s ease-in;
   &:hover{
     background-color: #E8F5FE;
   }
+`
+const LinkFollow = styled(Link)`
+  color: black;
+    &:hover{
+      text-decoration: underline;
+    }
 `
 
 export default Profile;

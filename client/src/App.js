@@ -14,6 +14,8 @@ import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
 import { CurrentUserContext } from './contexts/CurrentUser.context';
 import { CurrentFeedContext } from './contexts/CurrentFeed.context';
+import Following from './components/Following';
+import Followers from './components/Followers';
 
 
 function App() {
@@ -33,7 +35,6 @@ function App() {
     fetch(`/api/me/profile`)
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
         handleUserLogIn(data)
       });
   
@@ -59,6 +60,12 @@ function App() {
             </Route>
             <Route exact path='/notifications'>
               <Notifications />
+            </Route>
+            <Route exact path='/following'>
+              <Following />
+            </Route>
+            <Route exact path='/followers'>
+              <Followers />
             </Route>
             <Route exact path='/bookmarks'>
               <Bookmarks />

@@ -28,7 +28,7 @@ function HomeFeed() {
 
 
 const Title = styled.div`
-  padding: 20px;
+  padding: 15px;
   border-left: 1px solid #e6ecf0;
   border-right: 1px solid #e6ecf0;
   border-bottom: 1px solid #e6ecf0; 
