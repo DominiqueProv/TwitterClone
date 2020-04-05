@@ -5,7 +5,7 @@ import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 
 const TweetBox = () => {
   const { currentUserState } = useContext(CurrentUserContext);
-  const { handleSubmitTweet } = useContext(CurrentFeedContext);
+  const { actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
 
   const [input, setInput] = useState({status: ""})
   let textColor = { color: 'lightgray' };

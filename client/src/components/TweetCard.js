@@ -48,12 +48,14 @@ const TweetCard = ({ tweet }) => {
                 style={{ fontWeight: '700' }}>{tweet.author.displayName}</a>
               <span style={{ color: 'gray', paddingLeft: '10px' }}>@{tweet.author.handle} • {tweet.timestamp}</span>
             </p>
-            <p style={{ width: '480px' }}>{tweet.status}</p>
+            <div style={{ width: '480px',  display: 'block', overflow: 'auto' }}>{tweet.status}</div>
             {tweet.media.length > 0 &&
+              <div style={{ height: '280px', overflow: 'hidden', borderRadius: '18px'}}>
               <ImageWrapper>
                 <MainPic src={tweet.media[0].url}
                   alt='img' />
               </ImageWrapper>
+              </div>
             }
             <ActionBox tweetId={tweet.id}
                        tweetLiked={tweet.isLiked}

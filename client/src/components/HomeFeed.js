@@ -19,7 +19,7 @@ function HomeFeed() {
         {feedList.map(tweet => (
           <TweetCard tweet={tweet}
             key={tweet.id} />
-        ))}
+        )).reverse()}
         
       </div>
     </>

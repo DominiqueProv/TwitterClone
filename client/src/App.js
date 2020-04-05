@@ -61,10 +61,10 @@ function App() {
             <Route exact path='/notifications'>
               <Notifications />
             </Route>
-            <Route exact path='/following'>
+            <Route exact path='/:profileId/Following'>
               <Following />
             </Route>
-            <Route exact path='/followers'>
+            <Route exact path='/:profileId/Followers'>
               <Followers />
             </Route>
             <Route exact path='/bookmarks'>

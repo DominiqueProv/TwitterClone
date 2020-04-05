@@ -51,7 +51,7 @@ return (
     currentFeedState,
     actions: {
       handleFeed,
-      handleSubmitTweet,
+      handleSubmitTweet
     }
   }}>
     {children}

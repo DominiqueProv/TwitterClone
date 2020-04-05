@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
 import { mapPin } from 'react-icons-kit/feather/mapPin';
@@ -7,14 +7,14 @@ import { useParams } from 'react-router-dom';
 import TweetCard from './TweetCard';
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
 import { Link } from 'react-router-dom';
+import {CurrentUserContext} from '../contexts/CurrentUser.context';
 
 function Profile() {
 
+  const { actions: {handleFollowing, handleFollowers} } = useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [profileData, setProfileData] = useState({});
   const [profileTweet, setProfileTweetData] = useState({});
-
-  // const [follow, setFollow] = useState({})
 
   useEffect(() => {
     fetch(`/api/${profileId}/profile`)
@@ -55,8 +55,10 @@ function Profile() {
             <HeroBanner src={profileData.profile.bannerSrc} alt='hero banner' />
             <Avatar src={profileData.profile.avatarSrc} alt='avatar' />
           </div>
-          <div style={{ textAlign: "right" }}>
+          <div style={{ textAlign: "right", height:"70px" }}>
+            {profileData.profile.isBeingFollowedByYou &&
             <FollowingButton>Following</FollowingButton>
+            }
           </div>
           <div style={{ margin: '0 0 0 15px' }}>
             <h2>{profileData.profile.displayName}</h2>
@@ -73,14 +75,16 @@ function Profile() {
             </InfoIcon>
             <div style={{ display: 'flex', margin: '20px 0 0 0' }}>
               <div style={{ marginRight: '30px' }}>
-                <p>
-                 <LinkFollow to = '/Following'> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
-                  Following </LinkFollow>
+                <p onClick={() => handleFollowing(profileId)}>
+                <LinkFollow to ={`/${profileId}/Following`}>
+                 <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
+                  Following 
+                  </LinkFollow>
                   </p>
               </div>
               <div>
-                <p>
-                <LinkFollow to = '/Following'>
+                <p onClick={() => handleFollowers(profileId)}>
+                <LinkFollow to = {`/${profileId}/Followers`}>
                   <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowers} </span>
                 Followers
                 </LinkFollow>
@@ -91,9 +95,8 @@ function Profile() {
 
         </Wrapper>
       ) : (
-          <div>Profile</div>
+          <div></div>
         )}
-
       {profileTweet.tweetsById ? (
         <>
           <Menu>
@@ -107,11 +110,11 @@ function Profile() {
                 <TweetCard tweet={tweet}
                   key={tweet.id}
                 />
-              ))}
+              )).reverse()}
           </div>
         </>
       ) : (
-          <div>Profile</div>
+          <div></div>
         )}
     </>
   );
@@ -177,23 +180,23 @@ color: gray;
 
 const FollowingButton = styled.button`
 color: white;
-  background-color: #2aa9e0;
-  padding: 10px 30px;
-  border-radius: 25px;
-  border: none;
-  margin: 30px 20px 0 0 ;
-  font-size: 1em;
-  font-weight: 700;
-  outline: none;
-  cursor: pointer;
+background-color: #2aa9e0;
+padding: 10px 30px;
+border-radius: 25px;
+border: none;
+margin: 30px 20px 0 0 ;
+font-size: 1em;
+font-weight: 700;
+outline: none;
+cursor: pointer;
 `
 const Title = styled.div`
-  padding: 10px;
-  border-left: 1px solid #F4F7F6;
-  border-right: 1px solid #F4F7F6;
-  border-bottom: 2px solid #F4F7F6;
-  display: flex;
-  align-items: center;
+padding: 10px;
+border-left: 1px solid #F4F7F6;
+border-right: 1px solid #F4F7F6;
+border-bottom: 2px solid #F4F7F6;
+display: flex;
+align-items: center;
 `
 const IconArrow = styled(Icon)`
 margin-right: 20px;
