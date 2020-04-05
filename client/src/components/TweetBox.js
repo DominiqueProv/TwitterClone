@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { CurrentUserContext } from '../contexts/CurrentUser.context';
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const TweetBox = () => {
   const { currentUserState } = useContext(CurrentUserContext);
-  const { actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
+  const { currentFeedState, actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
 
   const [input, setInput] = useState({status: ""})
   let textColor = { color: 'lightgray' };
@@ -16,7 +17,7 @@ const TweetBox = () => {
   } else if (input.status.length > 260) {
     textColor = { color: 'red' }
   }
-
+  
   return (
     <>
       {currentUserState.currentUser &&
@@ -35,13 +36,19 @@ const TweetBox = () => {
                   <p style={textColor}>{280 - input.status.length}</p>
                 </div>
                 <div>
-                  <Input disabled={input.status.length === 0} type="submit" value="Meow" onClick={() => handleSubmitTweet(input)} />
+                  <Input 
+                    disabled={input.status.length === 0} 
+                    type="submit" 
+                    value="Meow" 
+                    onClick={() => handleSubmitTweet(input)}/>
+                    {/* {currentFeedState.status === 'awaiting-response' ? (<CircularProgress size={20} color="inherit" />) : ('Meow')} */}
+                  {/* </Input> */}
                 </div>
               </FormFooter>
             </form>
           </div>
         </Content>
-      }
+       }
     </>
   );
 }
@@ -73,6 +80,7 @@ const Input = styled.input`
   outline: none;
   cursor: pointer;
   transition: background-color .2s ease-in;
+  
   ${({ disabled }) => disabled && `
     background: #bce5ff;
   `}

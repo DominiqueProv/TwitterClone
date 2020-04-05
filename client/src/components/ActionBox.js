@@ -67,7 +67,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
             style={retweeted}
             size={20}
             icon={repeat}
-            toggle={(!retweet).toString()} />
+            toggle={!retweet} />
           {!retweet === false &&
             <LikeCount>
               1
@@ -79,7 +79,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
             style={liked}
             size={20}
             icon={heart}
-            toggle={(!like).toString()} />
+            toggle={!like} />
           {!like === false &&
             <LikeCount>
               1

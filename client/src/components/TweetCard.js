@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Icon } from 'react-icons-kit'
 import { repeat } from 'react-icons-kit/feather/repeat'
 import ActionBox from './ActionBox';
-import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
 const TweetCard = ({ tweet }) => {
@@ -23,7 +22,6 @@ const TweetCard = ({ tweet }) => {
   }
 
   return (
-    // <Link to={`/tweet/${tweet.id}`}>
     <Wrapper onClick={ev => { handleDetailTweet(ev) }} data-name='wrapper'
       //  tabIndex="0" 
       aria-label='View tweet'>
@@ -48,14 +46,12 @@ const TweetCard = ({ tweet }) => {
                 style={{ fontWeight: '700' }}>{tweet.author.displayName}</a>
               <span style={{ color: 'gray', paddingLeft: '10px' }}>@{tweet.author.handle} • {tweet.timestamp}</span>
             </p>
-            <div style={{ width: '480px',  display: 'block', overflow: 'auto' }}>{tweet.status}</div>
+            <p style={{ width: '480px' }}>{tweet.status}</p>
             {tweet.media.length > 0 &&
-              <div style={{ height: '280px', overflow: 'hidden', borderRadius: '18px'}}>
               <ImageWrapper>
                 <MainPic src={tweet.media[0].url}
                   alt='img' />
               </ImageWrapper>
-              </div>
             }
             <ActionBox tweetId={tweet.id}
                        tweetLiked={tweet.isLiked}
@@ -64,7 +60,6 @@ const TweetCard = ({ tweet }) => {
         </Content>
       </div>
     </Wrapper>
-    // </Link>
   )
 }
 const Content = styled.div`

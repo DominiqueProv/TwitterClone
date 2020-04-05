@@ -9,6 +9,7 @@ import { bookmark } from 'react-icons-kit/feather/bookmark';
 import { Icon } from 'react-icons-kit';
 import { CurrentUserContext } from '../contexts/CurrentUser.context';
 import {plus} from 'react-icons-kit/feather/plus'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -16,23 +17,45 @@ const Sidebar = () => {
 
   const { currentUserState } = useContext(CurrentUserContext);
   let handle = '';
-
+  let profilepic = '';
   if (currentUserState.currentUser) {
     handle = currentUserState.currentUser.profile.handle;
+    profilepic = currentUserState.currentUser.profile.avatarSrc;
   }
 
+  const isLoaded = currentUserState.isLoaded;
+  
+  // const showCircular = () => {
+  //   if (!isLoaded) {
+  //     return (
+  //       <LoaderWrapper>
+  //         <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+  //       </LoaderWrapper>
+  //     )
+  //   }
+  // }
+
   return (
-    <Wrapper>
+    <>
+    {!isLoaded ? (
+      <LoaderWrapper>
+      <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+    </LoaderWrapper>
+    ) : (
+      <Wrapper>
       <LogoTwitter/>
       <ul>
         <li> <NavLink exact to="/"><IconMenu icon={home} size={23} /><span>Home</span></NavLink></li>
-        <li> <NavLink exact to={`/${handle}`}><IconMenu  icon={user} size={23} /><span>Profile</span></NavLink> </li>
+        <li> <NavLink exact to={`/${handle}`}><div style={{display: 'flex'}}><ProfileSide src={profilepic}/><span style={{marginTop: '5px'}}>Profile</span></div></NavLink> </li>
         <li> <NavLink exact to="/Notifications"><IconMenu icon={bell} size={23} /><span>Notifications</span></NavLink> </li>
         <li> <NavLink exact to="/Bookmarks"><IconMenu icon={bookmark} size={23} /><span>Bookmarks</span></NavLink> </li>
         <li> <Button><Icon icon={plus} size={22} /><span style={{ paddingLeft: '10px' }}>Meow</span></Button></li>
       </ul>
     </Wrapper>
-  );
+  )
+}
+  </>
+  )
 }
 
 const LogoTwitter = styled(Logo)`
@@ -106,10 +129,29 @@ const Button = styled.button`
   }
 `
 const IconMenu = styled(Icon)`
-padding-right: 10px;
+padding-right: 12px;
 @media (max-width: 850px) {
   padding-right: 0px;
   }
 `
 
+const ProfileSide = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #2593d8 ;
+  margin-right: 10px;
+  margin-left: -5px;
+  @media (max-width: 850px) {
+  margin-right: 0px;
+  }
+`
+const LoaderWrapper = styled.div`
+  margin: 100px auto;
+  width: 200px;
+  color: #FFF;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+`
 export default Sidebar

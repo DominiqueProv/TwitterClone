@@ -4,22 +4,25 @@ import TweetCard from './TweetCard';
 import styled from 'styled-components';
 import TweetBox from './TweetBox'
 
-function HomeFeed() {
+const HomeFeed = () => {
 
   const { currentFeedState } = useContext(CurrentFeedContext);
   const tweetFeed = currentFeedState.currentFeed.tweetsById;
   const feedList = Object.values(tweetFeed);
+  
+
   return (
     <>
       <Title>
         <h1>Home</h1>
       </Title>
+     
       <TweetBox/>
       <div>
         {feedList.map(tweet => (
           <TweetCard tweet={tweet}
             key={tweet.id} />
-        )).reverse()}
+        ))}
         
       </div>
     </>

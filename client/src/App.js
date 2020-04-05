@@ -16,6 +16,7 @@ import { CurrentUserContext } from './contexts/CurrentUser.context';
 import { CurrentFeedContext } from './contexts/CurrentFeed.context';
 import Following from './components/Following';
 import Followers from './components/Followers';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
     currentFeedState,
     actions: { handleFeed },
   } = useContext(CurrentFeedContext);
-
 
   useEffect(() => {
     fetch(`/api/me/profile`)
@@ -45,7 +45,16 @@ function App() {
       });
   }, []);
 
-
+  const feedLoaded = currentFeedState.feedLoaded;
+  const showCircular = () => {
+    if (!feedLoaded) {
+      return (
+        <LoaderWrapper>
+          <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+        </LoaderWrapper>
+      )
+    }
+  }
 
   return (
     <Router>
@@ -53,25 +62,26 @@ function App() {
         <div>
           <Sidebar/>
         </div>
+        {showCircular()}
         <div>
           <Switch>
             <Route exact path='/'>
-              {currentFeedState.isLoaded && <HomeFeed />}
+              {currentFeedState.feedLoaded && <HomeFeed />}
             </Route>
             <Route exact path='/notifications'>
               <Notifications />
             </Route>
-            <Route exact path='/:profileId/Following'>
+            <Route exact path='/following'>
               <Following />
             </Route>
-            <Route exact path='/:profileId/Followers'>
+            <Route exact path='/followers'>
               <Followers />
             </Route>
             <Route exact path='/bookmarks'>
               <Bookmarks />
             </Route>
             <Route exact path='/tweet/:tweetId'>
-              {currentFeedState.isLoaded && <TweetDetails />}
+              {currentFeedState.feedLoaded && <TweetDetails />}
             </Route>
             <Route exact path='/:profileId'>
               {currentUserState.isLoaded && <Profile />}
@@ -92,5 +102,10 @@ const Wrapper = styled.div`
   width: 665px;
   }
 `
-
+const LoaderWrapper = styled.div`
+  margin: 100px auto;
+  color: #FFF;
+  display:flex;
+  justify-content: center;
+`
 export default App;

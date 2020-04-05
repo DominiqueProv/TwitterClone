@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 
 
-const FollowSmallBox = ({ follower, iFollow }) => {
-  const handle = follower.handle;
+const FollowingSmallBox = ({ followingUser, theyFollow }) => {
+  const handle = followingUser.handle;
   let history = useHistory();
 
-  const [following, setFollowing] = useState(iFollow)
+  const [following, setFollowing] = useState(theyFollow)
 
   function handleBackToProfile(ev) {
     ev.preventDefault();
     ev.stopPropagation();
-    history.push(`/${follower.handle}`);
+    history.push(`/${followingUser.handle}`);
   }
 
   const handleFollowing = (ev) => {
@@ -49,15 +49,15 @@ const FollowSmallBox = ({ follower, iFollow }) => {
     <>
       <Wrapper onClick={ev => { handleBackToProfile(ev) }}>
         <div>
-          <Avatar src={follower.avatarSrc} alt="avatar" />
+          <Avatar src={followingUser.avatarSrc} alt="avatar" />
         </div>
         <div>
           <InfoBox>
             <div>
-              <Name>{follower.displayName}</Name>
+              <Name>{followingUser.displayName}</Name>
               <div style={{ display: 'flex' }}>
-                <p style={{ padding: '3px 0 10px 0', color: '#627483' }}>@{follower.handle}</p>
-                {follower.isFollowingYou &&
+                <p style={{ padding: '3px 0 10px 0', color: '#627483' }}>@{followingUser.handle}</p>
+                {followingUser.isFollowingYou &&
                   <FollowYou>Follows you</FollowYou>
                 }
               </div>
@@ -69,7 +69,7 @@ const FollowSmallBox = ({ follower, iFollow }) => {
             </div>
           </InfoBox>
           <div style={{ fontSize: '.9em' }}>
-            {follower.bio}
+            {followingUser.bio}
           </div>
 
         </div>
@@ -134,4 +134,4 @@ outline: none;
 cursor: pointer;
 `
 
-export default FollowSmallBox
+export default FollowingSmallBox

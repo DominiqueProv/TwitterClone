@@ -15,7 +15,10 @@ const TweetDetailCard = ({ tweet }) => {
   }
 // 
   return (
-    <Wrapper data-name='wrapper' tabIndex="0" aria-label='View tweet'>
+    <Wrapper 
+      data-name='wrapper' 
+      // tabIndex="0" 
+      aria-label='View tweet'>
       <div data-name='box'
         key={tweet.id}
         style={{ borderBottom: "1px solid #e6ecf0", padding: '12px 0' }}
