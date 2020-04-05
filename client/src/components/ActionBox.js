@@ -24,6 +24,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
+          console.log('Success', data)
           setLike(!like)
         }
       });
@@ -41,6 +42,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
+          console.log('Success', data)
           setRetweet(!retweet)
         }
       });
@@ -67,7 +69,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
             style={retweeted}
             size={20}
             icon={repeat}
-            toggle={!retweet} />
+            toggle={(!retweet).toString()} />
           {!retweet === false &&
             <LikeCount>
               1
@@ -79,7 +81,7 @@ const ActionBox = ({ tweetId, tweetLiked, tweetRetweeted }) => {
             style={liked}
             size={20}
             icon={heart}
-            toggle={!like} />
+            toggle={(!like).toString()} />
           {!like === false &&
             <LikeCount>
               1

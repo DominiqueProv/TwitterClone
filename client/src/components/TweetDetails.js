@@ -53,8 +53,6 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   padding: 20px 15px;
-  /* border-left: 1px solid #F4F7F6;
-  border-right: 1px solid #F4F7F6; */
   border-bottom: 1px solid #e6ecf0;
   display: flex;
   align-items: center;

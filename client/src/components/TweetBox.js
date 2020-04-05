@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const TweetBox = () => {
   const { currentUserState } = useContext(CurrentUserContext);
-  const { currentFeedState, actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
+  const { actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
 
   const [input, setInput] = useState({status: ""})
   let textColor = { color: 'lightgray' };
@@ -101,9 +101,9 @@ const Content = styled.div`
   display: flex;
   width: 600px;
   padding: 15px 0;
-  border-left: 1px solid #e6ecf0;
+  /* border-left: 1px solid #e6ecf0;
   border-right: 1px solid #e6ecf0;
-  border-bottom: 1px solid #e6ecf0;
+  border-bottom: 1px solid #e6ecf0; */
 
   p{
     font-size: .9em;

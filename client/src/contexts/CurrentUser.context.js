@@ -5,7 +5,9 @@ export const CurrentUserContext = createContext();
 const initialState = {
   currentUser: null,
   status: 'idle',
-  isLoaded: false
+  isLoaded: false,
+  userFollowing: [],
+  userFollowers: [],
 };
 
 
@@ -17,6 +19,10 @@ function currentUserReducer(state, action) {
       return { ...state, userFollowing: action.payload.data, isLoaded: true }
     case 'followers':
       return { ...state, userFollowers: action.payload.data, isLoaded: true }
+    // case 'following':
+    //   return { ...state, userFollowing: action.payload.data }
+    // case 'followers':
+    //   return { ...state, userFollowers: action.payload.data }
     default:
       throw new Error('Should not get there!');
   }
@@ -33,11 +39,34 @@ export function CurrentUserProvider({ children }) {
     });
   };
 
+  const handleFollowing = (profileId) => {
+    fetch(`/api/${profileId}/following`)
+      .then(res => res.json())
+      .then(data => {
+        dispatch({
+          type: 'following',
+          payload: { data }
+        });
+      });
+  }
+
+  const handleFollowers = (profileId) => {
+    fetch(`/api/${profileId}/followers`)
+      .then(res => res.json())
+      .then(data => {
+        dispatch({
+          type: 'followers',
+          payload: { data },
+        });
+      });
+  }
   return (
     <CurrentUserContext.Provider value={{
       currentUserState,
       actions: {
         handleUserLogIn,
+        handleFollowing,
+        handleFollowers
       }
     }}>
       {children}

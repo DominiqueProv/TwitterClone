@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import { CurrentUserContext } from '../contexts/CurrentUser.context';
 import FollowSmallBox from './FollowSmallBox';
@@ -11,7 +11,8 @@ import { NavLink } from 'react-router-dom';
 const Followers = () => {
 
   const { profileId } = useParams();
-  const { currentUserState } = useContext(CurrentUserContext);
+  const { currentUserState, actions: handleFollowers, handleFollowing } = useContext(CurrentUserContext);
+  console.log(currentUserState)
   // const followers = currentUserState.userFollowers;
   // const name = currentUserState.currentUser.profile.displayName;
   // if (currentUserState.currentUser.profile.displayName) {
@@ -20,14 +21,14 @@ const Followers = () => {
 
   return (
     <>
-      {currentUserState.userFollowers.followers && currentUserState.userFollowing.following &&
+      {currentUserState.userFollowers.followers &&
         <Wrapper>
           <FollowTitle profileId={profileId} />
           <MenuWrapper>
-            <MenuBox exact to={`/${profileId}/Followers`}>
+            
+            <MenuBox exact to={`/${profileId}/Followers`} >
               <TabTitle>Followers</TabTitle>
             </MenuBox>
-
             <MenuBox exact to={`/${profileId}/Following`}>
               <TabTitle>Following</TabTitle>
             </MenuBox>
@@ -40,7 +41,6 @@ const Followers = () => {
               follower={follower}
               key={follower.handle}
               iFollow={follower.isBeingFollowedByYou}
-
             />
           ))}
           </div>

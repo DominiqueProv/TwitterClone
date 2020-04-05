@@ -11,21 +11,25 @@ import { NavLink } from 'react-router-dom';
 const Following = () => {
 
   const { profileId } = useParams();
-  const { currentUserState } = useContext(CurrentUserContext);
-  const following = currentUserState.userFollowing;
-
+  const { currentUserState, actions: handleFollowing,
+    handleFollowers } = useContext(CurrentUserContext);
+  // const following = currentUserState.userFollowing;
+  
+  if(currentUserState.userFollowing){
+  console.log('Hello')
+}
 
   return(
     <>
-    {currentUserState.userFollowers.followers && currentUserState.userFollowing.following &&
+    { currentUserState.userFollowing.following &&
       <Wrapper>
         <FollowTitle profileId={profileId}/>
         <MenuWrapper>
-      <MenuBox exact to={`/${profileId}/Followers`}>
+      <MenuBox exact to={`/${profileId}/Followers`} onClick={() => handleFollowers(profileId)}>
           <TabTitle>Followers</TabTitle>
         </MenuBox>
      
-      <MenuBox exact to={`/${profileId}/Following`}>
+      <MenuBox exact to={`/${profileId}/Following`} onClick={() => handleFollowing(profileId)}>
           <TabTitle>Following</TabTitle>
         </MenuBox>
     </MenuWrapper>

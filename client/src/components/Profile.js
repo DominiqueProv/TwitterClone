@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
 import { mapPin } from 'react-icons-kit/feather/mapPin';
@@ -7,9 +7,11 @@ import { useParams } from 'react-router-dom';
 import TweetCard from './TweetCard';
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
 import { Link } from 'react-router-dom';
+import {CurrentUserContext} from '../contexts/CurrentUser.context';
+
 
 function Profile() {
-
+  const { actions: {handleFollowing, handleFollowers} } = useContext(CurrentUserContext);
   const { profileId } = useParams();
   const [profileData, setProfileData] = useState({});
   const [profileTweet, setProfileTweetData] = useState({});
@@ -75,14 +77,14 @@ function Profile() {
             </InfoIcon>
             <div style={{ display: 'flex', margin: '20px 0 0 0' }}>
               <div style={{ marginRight: '30px' }}>
-                <p>
-                 <LinkFollow to = '/Following'> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
+                <p onClick={() => handleFollowing(profileId)}>
+                 <LinkFollow to ={`/${profileId}/Following`}> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
                   Following </LinkFollow>
                   </p>
               </div>
               <div>
-                <p>
-                <LinkFollow to = '/Following'>
+                <p onClick={() => handleFollowers(profileId)}>
+                <LinkFollow to ={`/${profileId}/Followers`}>
                   <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowers} </span>
                 Followers
                 </LinkFollow>
@@ -99,22 +101,23 @@ function Profile() {
         }
       {profileTweet.tweetsById ? (
         <>
+        <div style={{ borderLeft: '1px solid #e6ecf0', borderRight: '1px solid #e6ecf0' }}>
           <Menu>
             <MenuItem style={{ borderBottom: '3px solid #2aa9e0 ' }}><span style={{ color: '#2aa9e0' }}>Tweets</span></MenuItem>
             <MenuItem>Media</MenuItem>
             <MenuItem >Likes</MenuItem>
           </Menu>
-          <div>
+          
             {
               Object.values(profileTweet.tweetsById).map(tweet => (
                 <TweetCard tweet={tweet}
                   key={tweet.id}
                 />
-              ))}
+              )).reverse()}
           </div>
         </>
       ) : (
-          <div>Profile</div>
+          <div></div>
         )}
     </>
   );
@@ -124,9 +127,8 @@ const Menu = styled.div`
 display: flex;
 align-items: center;
 height: 60px;
-border-left: 1px solid #e6ecf0;
-border-right: 1px solid #e6ecf0;
-border-bottom: 1px solid #e6ecf0;
+/* border-left: 1px solid #e6ecf0;
+border-right: 1px solid #e6ecf0; */
 
 `
 const MenuItem = styled.div`
@@ -138,7 +140,6 @@ height: 100%;
 padding-top: 15px;
 `
 const Wrapper = styled.div`
-  width: 600px;
   border-left: 1px solid #e6ecf0;
   border-right: 1px solid #e6ecf0;
   div{
@@ -149,7 +150,7 @@ const Wrapper = styled.div`
   }
 `
 const HeroBanner = styled.img`
-width: 598px;
+width: 600px;
 `
 const Avatar = styled.img`
 width: 142px;

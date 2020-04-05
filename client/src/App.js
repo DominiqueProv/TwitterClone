@@ -17,7 +17,7 @@ import { CurrentFeedContext } from './contexts/CurrentFeed.context';
 import Following from './components/Following';
 import Followers from './components/Followers';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { TweetModal } from './components/TweetModal';
 
 function App() {
 
@@ -45,9 +45,9 @@ function App() {
       });
   }, []);
 
-  const feedLoaded = currentFeedState.feedLoaded;
+  const loaded = currentUserState.isLoaded;
   const showCircular = () => {
-    if (!feedLoaded) {
+    if(!loaded) {
       return (
         <LoaderWrapper>
           <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
@@ -59,6 +59,7 @@ function App() {
   return (
     <Router>
       <Wrapper>
+        <TweetModal/>
         <div>
           <Sidebar/>
         </div>
@@ -71,11 +72,12 @@ function App() {
             <Route exact path='/notifications'>
               <Notifications />
             </Route>
-            <Route exact path='/following'>
-              <Following />
+            <Route exact path='/:profileId/Following'>
+             <Following />
             </Route>
-            <Route exact path='/followers'>
-              <Followers />
+             
+            <Route exact path='/:profileId/Followers'>
+            <Followers />
             </Route>
             <Route exact path='/bookmarks'>
               <Bookmarks />

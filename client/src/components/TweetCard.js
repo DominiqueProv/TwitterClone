@@ -27,7 +27,7 @@ const TweetCard = ({ tweet }) => {
       aria-label='View tweet'>
       <div data-name='box'
         key={tweet.id}
-        style={{ borderBottom: "1px solid #e6ecf0", padding: '12px 0' }}
+        style={{ padding: '12px 0' }}
       >
         {tweet.retweetFrom &&
           <p style={{ color: 'gray', fontSize: ".8em" }}>
@@ -87,8 +87,9 @@ const Wrapper = styled.div`
   width: 600px;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #e6ecf0;
-  border-right: 1px solid #e6ecf0;
+  border-top: 1px solid #e6ecf0;
+  /* border-left: 1px solid #e6ecf0;
+  border-right: 1px solid #e6ecf0; */
   transition: all .3s ease-in;
   cursor: pointer;
   color: grey;

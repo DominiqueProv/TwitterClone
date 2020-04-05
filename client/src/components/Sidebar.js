@@ -10,11 +10,12 @@ import { Icon } from 'react-icons-kit';
 import { CurrentUserContext } from '../contexts/CurrentUser.context';
 import {plus} from 'react-icons-kit/feather/plus'
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { TweetContext } from '../contexts/Tweet.Context';
 
 
 const Sidebar = () => {
-
+  
+  const { actions } = useContext(TweetContext);
   const { currentUserState } = useContext(CurrentUserContext);
   let handle = '';
   let profilepic = '';
@@ -37,11 +38,12 @@ const Sidebar = () => {
 
   return (
     <>
-    {!isLoaded ? (
-      <LoaderWrapper>
-      <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
-    </LoaderWrapper>
-    ) : (
+    {isLoaded &&
+    // ? (
+    //   <LoaderWrapper>
+    //   <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+    // </LoaderWrapper>
+    // ) : (
       <Wrapper>
       <LogoTwitter/>
       <ul>
@@ -49,11 +51,10 @@ const Sidebar = () => {
         <li> <NavLink exact to={`/${handle}`}><div style={{display: 'flex'}}><ProfileSide src={profilepic}/><span style={{marginTop: '5px'}}>Profile</span></div></NavLink> </li>
         <li> <NavLink exact to="/Notifications"><IconMenu icon={bell} size={23} /><span>Notifications</span></NavLink> </li>
         <li> <NavLink exact to="/Bookmarks"><IconMenu icon={bookmark} size={23} /><span>Bookmarks</span></NavLink> </li>
-        <li> <Button><Icon icon={plus} size={22} /><span style={{ paddingLeft: '10px' }}>Meow</span></Button></li>
+        <li> <Button onClick={() => actions.handleOpen()}><Icon icon={plus} size={22} /><span style={{ paddingLeft: '10px' }}>Meow</span></Button></li>
       </ul>
     </Wrapper>
-  )
-}
+  }
   </>
   )
 }
