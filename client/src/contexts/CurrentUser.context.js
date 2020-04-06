@@ -16,13 +16,9 @@ function currentUserReducer(state, action) {
     case 'received-my-profile':
       return { ...state, currentUser: action.payload.data, status: 'logged In', isLoaded: true }
     case 'following':
-      return { ...state, userFollowing: action.payload.data, isLoaded: true }
+      return { ...state, userFollowing: action.payload.data , status: 'following'}
     case 'followers':
-      return { ...state, userFollowers: action.payload.data, isLoaded: true }
-    // case 'following':
-    //   return { ...state, userFollowing: action.payload.data }
-    // case 'followers':
-    //   return { ...state, userFollowers: action.payload.data }
+      return { ...state, userFollowers: action.payload.data, status: 'followers' }
     default:
       throw new Error('Should not get there!');
   }

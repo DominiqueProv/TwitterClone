@@ -25,11 +25,11 @@ const Following = () => {
       <Wrapper>
         <FollowTitle profileId={profileId}/>
         <MenuWrapper>
-      <MenuBox exact to={`/${profileId}/Followers`} onClick={() => handleFollowers(profileId)}>
+      <MenuBox exact to={`/${profileId}/Followers`}>
           <TabTitle>Followers</TabTitle>
         </MenuBox>
      
-      <MenuBox exact to={`/${profileId}/Following`} onClick={() => handleFollowing(profileId)}>
+      <MenuBox exact to={`/${profileId}/Following`}>
           <TabTitle>Following</TabTitle>
         </MenuBox>
     </MenuWrapper>

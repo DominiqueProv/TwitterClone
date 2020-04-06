@@ -10,7 +10,7 @@ const FollowTitle = ({profileId}) => {
     <Title>
     <Link to={`/${profileId}`}><IconArrow size={20} icon={arrowLeft} /></Link>
     <h1 style={{ lineHeight: '20px' }}> @{profileId}<br />
-      <TweetCount>texte Lorem</TweetCount>
+      <TweetCount>Life is good</TweetCount>
     </h1>
   </Title>
   );

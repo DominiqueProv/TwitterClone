@@ -35,6 +35,7 @@ export function CurrentFeedProvider({ children }) {
   };
 
   const handleSubmitTweet = (tweetContent) => {
+    alert('Hello')
     fetch("/api/tweet", {
       "method": "POST",
       body: JSON.stringify(tweetContent),
