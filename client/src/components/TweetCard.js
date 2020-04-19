@@ -6,7 +6,7 @@ import ActionBox from './ActionBox';
 import { useHistory } from "react-router-dom";
 
 const TweetCard = ({ tweet }) => {
-  // console.log(tweet)
+
   let history = useHistory();
 
   function handleClick(ev) {

@@ -7,7 +7,7 @@ import { user } from 'react-icons-kit/feather/user';
 import { bell } from 'react-icons-kit/feather/bell';
 import { bookmark } from 'react-icons-kit/feather/bookmark';
 import { Icon } from 'react-icons-kit';
-import { CurrentUserContext } from '../contexts/CurrentUser.context';
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 import {plus} from 'react-icons-kit/feather/plus'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { TweetContext } from '../contexts/Tweet.Context';
@@ -16,15 +16,15 @@ import { TweetContext } from '../contexts/Tweet.Context';
 const Sidebar = () => {
   
   const { actions } = useContext(TweetContext);
-  const { currentUserState } = useContext(CurrentUserContext);
+  const { currentFeedState } = useContext(CurrentFeedContext);
   let handle = '';
   let profilepic = '';
-  if (currentUserState.currentUser) {
-    handle = currentUserState.currentUser.profile.handle;
-    profilepic = currentUserState.currentUser.profile.avatarSrc;
+  if (currentFeedState.currentUser) {
+    handle = currentFeedState.currentUser.profile.handle;
+    profilepic = currentFeedState.currentUser.profile.avatarSrc;
   }
 
-  const isLoaded = currentUserState.isLoaded;
+  const isLoaded = currentFeedState.isLoaded;
   
   // const showCircular = () => {
   //   if (!isLoaded) {

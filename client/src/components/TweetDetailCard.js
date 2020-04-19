@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 
 const TweetDetailCard = ({ tweet }) => {
   let history = useHistory();
-  console.log(tweet)
 
   function handleClick() {
     history.push(`/${tweet.author.handle}`);

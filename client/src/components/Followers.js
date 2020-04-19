@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
-import { CurrentUserContext } from '../contexts/CurrentUser.context';
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 import FollowSmallBox from './FollowSmallBox';
 import { useParams } from 'react-router-dom';
 import MenuFollow from './MenuFollow';
@@ -11,17 +11,11 @@ import { NavLink } from 'react-router-dom';
 const Followers = () => {
 
   const { profileId } = useParams();
-  const { currentUserState, actions: handleFollowers, handleFollowing } = useContext(CurrentUserContext);
-  console.log(currentUserState)
-  // const followers = currentUserState.userFollowers;
-  // const name = currentUserState.currentUser.profile.displayName;
-  // if (currentUserState.currentUser.profile.displayName) {
-  //   console.log(currentUserState.currentUser.profile.displayName)
-  // }
-
+  const { currentFeedState, actions: handleFollowers, handleFollowing } = useContext(CurrentFeedContext);
+  
   return (
     <>
-      {currentUserState.userFollowers.followers &&
+      {currentFeedState.userFollowers.followers &&
         <Wrapper>
           <FollowTitle profileId={profileId} />
           <MenuWrapper>
@@ -36,7 +30,7 @@ const Followers = () => {
           {/* <MenuFollow
             profileId={profileId}/> */}
           <div>
-          {currentUserState.userFollowers.followers.map(follower => (
+          {currentFeedState.userFollowers.followers.map(follower => (
             <FollowSmallBox
               follower={follower}
               key={follower.handle}

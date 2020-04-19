@@ -1,54 +1,61 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { CurrentUserContext } from '../contexts/CurrentUser.context';
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
+import { TweetContext } from '../contexts/Tweet.Context';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const TweetBox = () => {
-  const { currentUserState } = useContext(CurrentUserContext);
-  const { actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
+  const { currentFeedState, actions: { handleSubmitTweet } } = useContext(CurrentFeedContext);
+  const { actions: { handleClose } } = useContext(TweetContext);
 
-  const [input, setInput] = useState({status: ""})
+  const [input, setInput] = useState("")
   let textColor = { color: 'lightgray' };
-  if (input.status.length > 100 && input.status.length < 230) {
+  if (input.length > 100 && input.length < 230) {
     textColor = { color: 'grey' }
-  } else if (input.status.length > 230 && input.status.length < 260) {
+  } else if (input.length > 230 && input.length < 260) {
     textColor = { color: 'orange' }
-  } else if (input.status.length > 260) {
+  } else if (input.length > 260) {
     textColor = { color: 'red' }
   }
-  
+
   return (
     <>
-      {currentUserState.currentUser &&
+      {currentFeedState.currentUser &&
         <Content>
           <div>
-            <Avatar src={currentUserState.currentUser.profile.avatarSrc} alt="avatar" />
+            <Avatar src={currentFeedState.currentUser.profile.avatarSrc} alt="avatar" />
           </div>
           <div>
             <form>
-              <Textarea 
+              <Textarea
+                value={input}
                 maxLength={280}
-                onChange={(event) => { setInput({...input, status: event.target.value }) }} 
+                onChange={(event) => { setInput(event.target.value) }}
                 placeholder='Got something to say...' />
               <FormFooter>
                 <div>
-                  <p style={textColor}>{280 - input.status.length}</p>
+                  <p style={textColor}>{280 - input.length}</p>
                 </div>
                 <div>
-                  <Input 
-                    disabled={input.status.length === 0} 
-                    type="submit" 
-                    value="Meow" 
-                    onClick={() => handleSubmitTweet(input)}/>
-                    {/* {currentFeedState.status === 'awaiting-response' ? (<CircularProgress size={20} color="inherit" />) : ('Meow')} */}
+                  <Input
+                    disabled={input.length === 0}
+                    type="submit"
+                    value="Meow"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleSubmitTweet(input);
+                      setInput('');
+                      handleClose();
+                    }}
+                  />
+                  {/* {currentFeedState.status === 'awaiting-response' ? (<CircularProgress size={20} color="inherit" />) : ('Meow')} */}
                   {/* </Input> */}
                 </div>
               </FormFooter>
             </form>
           </div>
         </Content>
-       }
+      }
     </>
   );
 }

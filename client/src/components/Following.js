@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
-import { CurrentUserContext } from '../contexts/CurrentUser.context';
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 import FollowingSmallBox from './FollowingSmallBox';
 import { useParams } from 'react-router-dom';
 import MenuFollow from './MenuFollow';
@@ -11,17 +11,14 @@ import { NavLink } from 'react-router-dom';
 const Following = () => {
 
   const { profileId } = useParams();
-  const { currentUserState, actions: handleFollowing,
-    handleFollowers } = useContext(CurrentUserContext);
+  const { currentFeedState, actions: handleFollowing,
+    handleFollowers } = useContext(CurrentFeedContext);
   // const following = currentUserState.userFollowing;
   
-  if(currentUserState.userFollowing){
-  console.log('Hello')
-}
 
   return(
     <>
-    { currentUserState.userFollowing.following &&
+    { currentFeedState.userFollowing.following &&
       <Wrapper>
         <FollowTitle profileId={profileId}/>
         <MenuWrapper>
@@ -35,7 +32,7 @@ const Following = () => {
     </MenuWrapper>
         {/* <MenuFollow profileId={profileId}/> */}
         <div>
-        {currentUserState.userFollowing.following.map(followingUser => (
+        {currentFeedState.userFollowing.following.map(followingUser => (
           <FollowingSmallBox 
               followingUser={followingUser}
               key={followingUser.handle}

@@ -7,11 +7,11 @@ import { useParams } from 'react-router-dom';
 import TweetCard from './TweetCard';
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
 import { Link } from 'react-router-dom';
-import {CurrentUserContext} from '../contexts/CurrentUser.context';
+import {CurrentFeedContext} from '../contexts/CurrentFeed.context';
 
 
 function Profile() {
-  const { actions: {handleFollowing, handleFollowers} } = useContext(CurrentUserContext);
+  const { actions: {handleFollowing, handleFollowers} } = useContext(CurrentFeedContext);
   const { profileId } = useParams();
   const [profileData, setProfileData] = useState({});
   const [profileTweet, setProfileTweetData] = useState({});

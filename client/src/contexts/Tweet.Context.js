@@ -6,7 +6,6 @@ const initialState = {
   open: false
 }
 
-
 function reducer(state, action) {
   switch (action.type) {
     case 'OPEN':

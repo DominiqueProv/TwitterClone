@@ -12,7 +12,6 @@ import Profile from './components/Profile';
 import GlobalStyles from './styles/GlobalStyles';
 import Sidebar from './components/Sidebar';
 import styled from 'styled-components';
-import { CurrentUserContext } from './contexts/CurrentUser.context';
 import { CurrentFeedContext } from './contexts/CurrentFeed.context';
 import Following from './components/Following';
 import Followers from './components/Followers';
@@ -22,13 +21,8 @@ import { TweetModal } from './components/TweetModal';
 function App() {
 
   const {
-    currentUserState,
-    actions: { handleUserLogIn },
-  } = useContext(CurrentUserContext);
-
-  const {
     currentFeedState,
-    actions: { handleFeed },
+    actions: { handleFeed, handleUserLogIn },
   } = useContext(CurrentFeedContext);
 
   useEffect(() => {
@@ -45,9 +39,10 @@ function App() {
       });
   }, []);
 
-  const loaded = currentUserState.isLoaded;
+  const loaded = currentFeedState.isLoaded;
+  const feedLoaded = currentFeedState.feedLoaded;
   const showCircular = () => {
-    if(!loaded) {
+    if(!loaded || !feedLoaded) {
       return (
         <LoaderWrapper>
           <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
@@ -86,7 +81,7 @@ function App() {
               {currentFeedState.feedLoaded && <TweetDetails />}
             </Route>
             <Route exact path='/:profileId'>
-              {currentUserState.isLoaded && <Profile />}
+              {currentFeedState.isLoaded && <Profile />}
             </Route>
           </Switch>
         </div>

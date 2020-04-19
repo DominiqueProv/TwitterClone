@@ -25,7 +25,6 @@ const FollowSmallBox = ({ follower, iFollow }) => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           if (data.success) {
             setFollowing(!following);
           }
@@ -37,7 +36,6 @@ const FollowSmallBox = ({ follower, iFollow }) => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           if (data.success) {
             setFollowing(!following);
           };

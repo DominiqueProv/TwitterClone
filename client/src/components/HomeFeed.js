@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 import TweetCard from './TweetCard';
 import styled from 'styled-components';
@@ -9,7 +9,6 @@ const HomeFeed = () => {
   const { currentFeedState } = useContext(CurrentFeedContext);
   const tweetFeed = currentFeedState.currentFeed.tweetsById;
   const feedList = Object.values(tweetFeed);
-
 
   return (
     <>
