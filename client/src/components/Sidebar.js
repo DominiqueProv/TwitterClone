@@ -10,7 +10,11 @@ import { Icon } from 'react-icons-kit';
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
 import {plus} from 'react-icons-kit/feather/plus'
 import CircularProgress from '@material-ui/core/CircularProgress';
+<<<<<<< Updated upstream
 import { TweetContext } from '../contexts/Tweet.Context';
+=======
+
+>>>>>>> Stashed changes
 
 
 const Sidebar = () => {
@@ -19,12 +23,21 @@ const Sidebar = () => {
   const { currentFeedState } = useContext(CurrentFeedContext);
   let handle = '';
   let profilepic = '';
+<<<<<<< Updated upstream
   if (currentFeedState.currentUser) {
     handle = currentFeedState.currentUser.profile.handle;
     profilepic = currentFeedState.currentUser.profile.avatarSrc;
   }
 
   const isLoaded = currentFeedState.isLoaded;
+=======
+  if (currentUserState.currentUser) {
+    handle = currentUserState.currentUser.profile.handle;
+    profilepic = currentUserState.currentUser.profile.avatarSrc;
+  }
+
+  const isLoaded = currentUserState.isLoaded;
+>>>>>>> Stashed changes
   
   // const showCircular = () => {
   //   if (!isLoaded) {
@@ -38,12 +51,20 @@ const Sidebar = () => {
 
   return (
     <>
+<<<<<<< Updated upstream
     {isLoaded &&
     // ? (
     //   <LoaderWrapper>
     //   <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
     // </LoaderWrapper>
     // ) : (
+=======
+    {!isLoaded ? (
+      <LoaderWrapper>
+      <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+    </LoaderWrapper>
+    ) : (
+>>>>>>> Stashed changes
       <Wrapper>
       <LogoTwitter/>
       <ul>
@@ -54,7 +75,12 @@ const Sidebar = () => {
         <li> <Button onClick={() => actions.handleOpen()}><Icon icon={plus} size={22} /><span style={{ paddingLeft: '10px' }}>Meow</span></Button></li>
       </ul>
     </Wrapper>
+<<<<<<< Updated upstream
   }
+=======
+  )
+}
+>>>>>>> Stashed changes
   </>
   )
 }

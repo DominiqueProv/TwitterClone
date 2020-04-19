@@ -4,12 +4,17 @@ export const CurrentFeedContext = createContext();
 const initialState = {
   currentUser: null,
   currentFeed: null,
+<<<<<<< Updated upstream
   isLoaded: false,
   status: 'idle',
   feedLoaded: false,
   userFollowing: [],
   userFollowers: [],
   avatarNewTweet: null
+=======
+  status: 'idle',
+  feedLoaded: false,
+>>>>>>> Stashed changes
 };
 
 
@@ -20,6 +25,7 @@ function currentFeedReducer(state, action) {
     case 'received-my-profile':
       return { ...state, currentUser: action.payload.data, isLoaded: true, status: 'logged In' }
     case 'received-feed-update':
+<<<<<<< Updated upstream
       return { ...state, currentFeed: action.payload.data, feedLoaded: true, status: 'logged In' }
     case 'post-new-tweet':
       const newTweet = {
@@ -47,6 +53,15 @@ function currentFeedReducer(state, action) {
       return { ...state, userFollowing: action.payload.data, status: 'following' }
     case 'followers':
       return { ...state, userFollowers: action.payload.data, status: 'followers' }
+=======
+      return { ...state, currentFeed: action.payload.data, status: 'default', feedLoaded: true }
+    case 'post-new-tweet':
+    return { ...state, cureentFeed: action.data.newTweet, status: 'update'}
+    case 'new-tweet-request':
+      return {...state, status: 'awaiting-response'}
+    case 'new-tweet-success':
+      return {...state, status: 'sucess'}
+>>>>>>> Stashed changes
     default:
       throw new Error('Should not get there!');
   }
@@ -105,7 +120,22 @@ export function CurrentFeedProvider({ children }) {
         });
       });
 
+<<<<<<< Updated upstream
   };
+=======
+const newTweetRequest = () => {
+  dispatch({
+    type: 'new-tweet-request'
+  })
+}
+
+const newTweetSuccess = () => {
+  dispatch ({
+    type: 'new-tweet-success'
+  })
+}
+
+>>>>>>> Stashed changes
 
   return (
     <CurrentFeedContext.Provider value={{

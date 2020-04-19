@@ -16,7 +16,11 @@ import { CurrentFeedContext } from './contexts/CurrentFeed.context';
 import Following from './components/Following';
 import Followers from './components/Followers';
 import CircularProgress from '@material-ui/core/CircularProgress';
+<<<<<<< Updated upstream
 import { TweetModal } from './components/TweetModal';
+=======
+
+>>>>>>> Stashed changes
 
 function App() {
 
@@ -39,10 +43,16 @@ function App() {
       });
   }, []);
 
+<<<<<<< Updated upstream
   const loaded = currentFeedState.isLoaded;
   const feedLoaded = currentFeedState.feedLoaded;
   const showCircular = () => {
     if(!loaded || !feedLoaded) {
+=======
+  const feedLoaded = currentFeedState.feedLoaded;
+  const showCircular = () => {
+    if (!feedLoaded) {
+>>>>>>> Stashed changes
       return (
         <LoaderWrapper>
           <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />

@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
+<<<<<<< Updated upstream
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
+=======
+import { CurrentUserContext } from '../contexts/CurrentUser.context';
+>>>>>>> Stashed changes
 import FollowingSmallBox from './FollowingSmallBox';
 import { useParams } from 'react-router-dom';
 import MenuFollow from './MenuFollow';
@@ -9,6 +13,13 @@ import FollowTitle from './FollowTitle';
 import { NavLink } from 'react-router-dom';
 
 const Following = () => {
+<<<<<<< Updated upstream
+=======
+
+  const { profileId } = useParams();
+  const { currentUserState } = useContext(CurrentUserContext);
+  const following = currentUserState.userFollowing;
+>>>>>>> Stashed changes
 
   const { profileId } = useParams();
   const { currentFeedState, actions: handleFollowing,
@@ -18,7 +29,11 @@ const Following = () => {
 
   return(
     <>
+<<<<<<< Updated upstream
     { currentFeedState.userFollowing.following &&
+=======
+    {currentUserState.userFollowers.followers && currentUserState.userFollowing.following &&
+>>>>>>> Stashed changes
       <Wrapper>
         <FollowTitle profileId={profileId}/>
         <MenuWrapper>
@@ -32,7 +47,11 @@ const Following = () => {
     </MenuWrapper>
         {/* <MenuFollow profileId={profileId}/> */}
         <div>
+<<<<<<< Updated upstream
         {currentFeedState.userFollowing.following.map(followingUser => (
+=======
+        {currentUserState.userFollowing.following.map(followingUser => (
+>>>>>>> Stashed changes
           <FollowingSmallBox 
               followingUser={followingUser}
               key={followingUser.handle}

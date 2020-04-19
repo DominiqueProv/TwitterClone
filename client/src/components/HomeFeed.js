@@ -9,6 +9,7 @@ const HomeFeed = () => {
   const { currentFeedState } = useContext(CurrentFeedContext);
   const tweetFeed = currentFeedState.currentFeed.tweetsById;
   const feedList = Object.values(tweetFeed);
+<<<<<<< Updated upstream
 
   return (
     <>
@@ -26,6 +27,24 @@ const HomeFeed = () => {
 
         </div>
       </Wrapper>
+=======
+  
+
+  return (
+    <>
+      <Title>
+        <h1>Home</h1>
+      </Title>
+     
+      <TweetBox/>
+      <div>
+        {feedList.map(tweet => (
+          <TweetCard tweet={tweet}
+            key={tweet.id} />
+        )).reverse()}
+        
+      </div>
+>>>>>>> Stashed changes
     </>
   );
 }
