@@ -1,16 +1,16 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react'
 
-export const CurrentUserContext = createContext();
+export const CurrentUserContext = createContext()
 
 const initialState = {
   currentUser: null,
   status: 'idle',
   isLoaded: false,
   userFollowing: [],
-  userFollowers: [],
-};
+  userFollowers: []
+}
 
-function currentUserReducer(state, action) {
+function currentUserReducer (state, action) {
   switch (action.type) {
     case 'received-my-profile':
       return { ...state, currentUser: action.payload.data, status: 'logged In', isLoaded: true }
@@ -19,22 +19,21 @@ function currentUserReducer(state, action) {
     case 'followers':
       return { ...state, userFollowers: action.payload.data, isLoaded: true }
     default:
-      throw new Error('Should not get there!');
+      throw new Error('Should not get there!')
   }
 }
 
 // userName: action.useName.profileId
 
-export function CurrentUserProvider({ children }) {
-
-  const [currentUserState, dispatch] = useReducer(currentUserReducer, initialState);
+export function CurrentUserProvider ({ children }) {
+  const [currentUserState, dispatch] = useReducer(currentUserReducer, initialState)
 
   const handleUserLogIn = (data) => {
     dispatch({
       type: 'received-my-profile',
       payload: { data }
-    });
-  };
+    })
+  }
 
   const handleFollowing = (profileId) => {
     fetch(`/api/${profileId}/following`)
@@ -43,8 +42,8 @@ export function CurrentUserProvider({ children }) {
         dispatch({
           type: 'following',
           payload: { data }
-        });
-      });
+        })
+      })
   }
 
   const handleFollowers = (profileId) => {
@@ -53,13 +52,10 @@ export function CurrentUserProvider({ children }) {
       .then(data => {
         dispatch({
           type: 'followers',
-          payload: { data },
-        });
-      });
+          payload: { data }
+        })
+      })
   }
-
-  
-
 
   return (
     <CurrentUserContext.Provider value={{
@@ -69,8 +65,9 @@ export function CurrentUserProvider({ children }) {
         handleFollowing,
         handleFollowers
       }
-    }}>
+    }}
+    >
       {children}
     </CurrentUserContext.Provider>
-  );
+  )
 }

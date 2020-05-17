@@ -1,6 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { COLORS } from './Theme';
-
+import { createGlobalStyle } from 'styled-components'
+import { COLORS } from './Theme'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -22,6 +21,6 @@ const GlobalStyles = createGlobalStyle`
     a {
         color: ${COLORS.primary};
     }
-`;
+`
 
-export default GlobalStyles;
+export default GlobalStyles

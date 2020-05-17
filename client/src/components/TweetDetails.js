@@ -1,42 +1,39 @@
-import React, { useContext } from 'react';
-import { useParams } from "react-router";
-import styled from 'styled-components';
-import { Icon } from 'react-icons-kit';
-import TweetCard from './TweetCard';
+import React, { useContext } from 'react'
+import { useParams } from 'react-router'
+import styled from 'styled-components'
+import { Icon } from 'react-icons-kit'
+import TweetCard from './TweetCard'
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
-import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
-import { Link } from "react-router-dom";
-import TweetDetailCard from "./TweetDetailCard";
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context'
+import { Link } from 'react-router-dom'
+import TweetDetailCard from './TweetDetailCard'
 
-function TweetDetails() {
+function TweetDetails () {
+  const { tweetId } = useParams()
 
-  let { tweetId } = useParams();
-
-  const { currentFeedState } = useContext(CurrentFeedContext);
+  const { currentFeedState } = useContext(CurrentFeedContext)
   // console.log(currentFeedState.currentFeed.tweetsById)
-  const tweetFeed = currentFeedState.currentFeed;
+  const tweetFeed = currentFeedState.currentFeed
   // const feedList = Object.values(tweetFeed);
   // console.log(tweetFeed)
   // if(tweetFeed.tweetsById){
-    const tweetDetail = tweetFeed.tweetsById[tweetId]
-    // console.log(tweetDetail)
-// }
-
+  const tweetDetail = tweetFeed.tweetsById[tweetId]
+  // console.log(tweetDetail)
+  // }
 
   return (
     <Wrapper>
       <Title>
-        <Link to={'/'}><IconArrow size={20} icon={arrowLeft} /></Link>
+        <Link to='/'><IconArrow size={20} icon={arrowLeft} /></Link>
         <h1>Tweet</h1>
       </Title>
       <div>
-          <TweetDetailCard tweet={tweetDetail}/>
+        <TweetDetailCard tweet={tweetDetail} />
       </div>
 
     </Wrapper>
-  );
+  )
 }
-
 
 const Wrapper = styled.div`
   width: 600px;
@@ -69,5 +66,4 @@ transition: all .2s ease-in;
   }
 `
 
-
-export default TweetDetails;
+export default TweetDetails

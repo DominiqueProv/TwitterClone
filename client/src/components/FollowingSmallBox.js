@@ -1,45 +1,44 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
-
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 const FollowingSmallBox = ({ followingUser, theyFollow }) => {
-  const handle = followingUser.handle;
-  let history = useHistory();
+  const handle = followingUser.handle
+  const history = useHistory()
 
   const [following, setFollowing] = useState(theyFollow)
 
-  function handleBackToProfile(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    history.push(`/${followingUser.handle}`);
+  function handleBackToProfile (ev) {
+    ev.preventDefault()
+    ev.stopPropagation()
+    history.push(`/${followingUser.handle}`)
   }
 
   const handleFollowing = (ev) => {
-    ev.preventDefault();
-    ev.stopPropagation();
+    ev.preventDefault()
+    ev.stopPropagation()
     if (!following) {
       fetch(`/api/${handle}/follow`, {
-        "method": "PUT",
-        "headers": { "content-type": "application/json" },
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' }
       })
         .then(res => res.json())
         .then(data => {
           if (data.success) {
-            setFollowing(!following);
+            setFollowing(!following)
           }
-        });
+        })
     } else {
       fetch(`/api/${handle}/unfollow`, {
-        "method": "PUT",
-        "headers": { "content-type": "application/json" },
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' }
       })
         .then(res => res.json())
         .then(data => {
           if (data.success) {
-            setFollowing(!following);
+            setFollowing(!following)
           };
-        });
+        })
     }
   }
 
@@ -47,7 +46,7 @@ const FollowingSmallBox = ({ followingUser, theyFollow }) => {
     <>
       <Wrapper onClick={ev => { handleBackToProfile(ev) }}>
         <div>
-          <Avatar src={followingUser.avatarSrc} alt="avatar" />
+          <Avatar src={followingUser.avatarSrc} alt='avatar' />
         </div>
         <div>
           <InfoBox>
@@ -56,13 +55,13 @@ const FollowingSmallBox = ({ followingUser, theyFollow }) => {
               <div style={{ display: 'flex' }}>
                 <p style={{ padding: '3px 0 10px 0', color: '#627483' }}>@{followingUser.handle}</p>
                 {followingUser.isFollowingYou &&
-                  <FollowYou>Follows you</FollowYou>
-                }
+                  <FollowYou>Follows you</FollowYou>}
               </div>
             </div>
             <div>
               <FollowingButton
-                onClick={(ev) => handleFollowing(ev)} >{following ? 'Following' : 'Follow'}
+                onClick={(ev) => handleFollowing(ev)}
+              >{following ? 'Following' : 'Follow'}
               </FollowingButton>
             </div>
           </InfoBox>
@@ -76,7 +75,6 @@ const FollowingSmallBox = ({ followingUser, theyFollow }) => {
     </>
   )
 }
-
 
 const Wrapper = styled.div`
   display: flex;

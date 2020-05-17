@@ -1,22 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
-
-const MenuFollow = ({profileId}) => {
-
-  
+const MenuFollow = ({ profileId }) => {
   return (
     <MenuWrapper>
       <MenuBox exact to={`/${profileId}/Followers`}>
-          <TabTitle>Followers</TabTitle>
-        </MenuBox>
-     
+        <TabTitle>Followers</TabTitle>
+      </MenuBox>
+
       <MenuBox exact to={`/${profileId}/Following`}>
-          <TabTitle>Following</TabTitle>
-        </MenuBox>
+        <TabTitle>Following</TabTitle>
+      </MenuBox>
     </MenuWrapper>
-  );
+  )
 }
 
 const MenuWrapper = styled.div`
@@ -43,6 +40,4 @@ const TabTitle = styled.p`
   font-size: 1em;
 `
 
-
 export default MenuFollow
-

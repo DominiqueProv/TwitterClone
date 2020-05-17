@@ -1,47 +1,46 @@
-import React, {useContext} from 'react';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import {TweetContext} from '../contexts/Tweet.Context';
-import {useStyles, Fade} from '../styles/TweetModal.css';
-import styled from 'styled-components';
-import TweetBox from './TweetBox';
-import {x} from 'react-icons-kit/feather/x';
-import { Icon } from 'react-icons-kit';
-
+import React, { useContext } from 'react'
+import Modal from '@material-ui/core/Modal'
+import Backdrop from '@material-ui/core/Backdrop'
+import { TweetContext } from '../contexts/Tweet.Context'
+import { useStyles, Fade } from '../styles/TweetModal.css'
+import styled from 'styled-components'
+import TweetBox from './TweetBox'
+import { x } from 'react-icons-kit/feather/x'
+import { Icon } from 'react-icons-kit'
 
 export const TweetModal = () => {
-  const classes = useStyles();
-  const {state, actions} = useContext(TweetContext);
+  const classes = useStyles()
+  const { state, actions } = useContext(TweetContext)
   return (
     <div>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         className={classes.modal}
         open={state.open === true}
         onClose={actions.handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 500
         }}
       >
         <Fade in={state.open === true}>
           <div className={classes.paper}>
             <Header>
-            <CloseModal 
-              onClick={actions.handleClose} 
-              size={30} 
-              icon={x} 
-            />
+              <CloseModal
+                onClick={actions.handleClose}
+                size={30}
+                icon={x}
+              />
             </Header>
-              <TweetBox/>
-           
+            <TweetBox />
+
           </div>
         </Fade>
       </Modal>
     </div>
-  );
+  )
 }
 
 const Header = styled.div`

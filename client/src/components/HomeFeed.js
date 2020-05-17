@@ -1,15 +1,13 @@
-import React, { useContext, useEffect } from 'react';
-import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
-import TweetCard from './TweetCard';
-import styled from 'styled-components';
+import React, { useContext, useEffect } from 'react'
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context'
+import TweetCard from './TweetCard'
+import styled from 'styled-components'
 import TweetBox from './TweetBox'
 
 const HomeFeed = () => {
-
-  const { currentFeedState } = useContext(CurrentFeedContext);
-  const tweetFeed = currentFeedState.currentFeed.tweetsById;
-  const feedList = Object.values(tweetFeed);
-<<<<<<< Updated upstream
+  const { currentFeedState } = useContext(CurrentFeedContext)
+  const tweetFeed = currentFeedState.currentFeed.tweetsById
+  const feedList = Object.values(tweetFeed)
 
   return (
     <>
@@ -21,32 +19,16 @@ const HomeFeed = () => {
         <TweetBox />
         <div>
           {feedList.map(tweet => (
-            <TweetCard tweet={tweet}
-              key={tweet.id} />
+            <TweetCard
+              tweet={tweet}
+              key={tweet.id}
+            />
           )).reverse()}
 
         </div>
       </Wrapper>
-=======
-  
-
-  return (
-    <>
-      <Title>
-        <h1>Home</h1>
-      </Title>
-     
-      <TweetBox/>
-      <div>
-        {feedList.map(tweet => (
-          <TweetCard tweet={tweet}
-            key={tweet.id} />
-        )).reverse()}
-        
-      </div>
->>>>>>> Stashed changes
     </>
-  );
+  )
 }
 
 const Wrapper = styled.div`
@@ -58,4 +40,4 @@ const Title = styled.div`
   border-bottom: 1px solid #e6ecf0; 
 `
 
-export default HomeFeed;
+export default HomeFeed

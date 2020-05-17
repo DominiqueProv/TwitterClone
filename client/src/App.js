@@ -1,61 +1,50 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route
-} from 'react-router-dom';
-import Bookmarks from './components/Bookmarks';
-import TweetDetails from './components/TweetDetails';
-import HomeFeed from './components/HomeFeed';
-import Notifications from './components/Notifications';
-import Profile from './components/Profile';
-import GlobalStyles from './styles/GlobalStyles';
-import Sidebar from './components/Sidebar';
-import styled from 'styled-components';
-import { CurrentFeedContext } from './contexts/CurrentFeed.context';
-import Following from './components/Following';
-import Followers from './components/Followers';
-import CircularProgress from '@material-ui/core/CircularProgress';
-<<<<<<< Updated upstream
-import { TweetModal } from './components/TweetModal';
-=======
+} from 'react-router-dom'
+import Bookmarks from './components/Bookmarks'
+import TweetDetails from './components/TweetDetails'
+import HomeFeed from './components/HomeFeed'
+import Notifications from './components/Notifications'
+import Profile from './components/Profile'
+import GlobalStyles from './styles/GlobalStyles'
+import Sidebar from './components/Sidebar'
+import styled from 'styled-components'
+import { CurrentFeedContext } from './contexts/CurrentFeed.context'
+import Following from './components/Following'
+import Followers from './components/Followers'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { TweetModal } from './components/TweetModal'
 
->>>>>>> Stashed changes
-
-function App() {
-
+function App () {
   const {
     currentFeedState,
-    actions: { handleFeed, handleUserLogIn },
-  } = useContext(CurrentFeedContext);
+    actions: { handleFeed, handleUserLogIn }
+  } = useContext(CurrentFeedContext)
 
   useEffect(() => {
-    fetch(`/api/me/profile`)
+    fetch('/api/me/profile')
       .then(res => res.json())
       .then(data => {
         handleUserLogIn(data)
-      });
-  
-    fetch("/api/me/home-feed")
+      })
+
+    fetch('/api/me/home-feed')
       .then(res => res.json())
       .then(data => {
         handleFeed(data)
-      });
-  }, []);
+      })
+  }, [])
 
-<<<<<<< Updated upstream
-  const loaded = currentFeedState.isLoaded;
-  const feedLoaded = currentFeedState.feedLoaded;
+  const loaded = currentFeedState.isLoaded
+  const feedLoaded = currentFeedState.feedLoaded
   const showCircular = () => {
-    if(!loaded || !feedLoaded) {
-=======
-  const feedLoaded = currentFeedState.feedLoaded;
-  const showCircular = () => {
-    if (!feedLoaded) {
->>>>>>> Stashed changes
+    if (!loaded || !feedLoaded) {
       return (
         <LoaderWrapper>
-          <CircularProgress color='primary' style={{ width:"30px", height:"30px", }} />
+          <CircularProgress color='primary' style={{ width: '30px', height: '30px' }} />
         </LoaderWrapper>
       )
     }
@@ -64,9 +53,9 @@ function App() {
   return (
     <Router>
       <Wrapper>
-        <TweetModal/>
+        <TweetModal />
         <div>
-          <Sidebar/>
+          <Sidebar />
         </div>
         {showCircular()}
         <div>
@@ -78,11 +67,11 @@ function App() {
               <Notifications />
             </Route>
             <Route exact path='/:profileId/Following'>
-             <Following />
+              <Following />
             </Route>
-             
+
             <Route exact path='/:profileId/Followers'>
-            <Followers />
+              <Followers />
             </Route>
             <Route exact path='/bookmarks'>
               <Bookmarks />
@@ -98,7 +87,7 @@ function App() {
       </Wrapper>
       <GlobalStyles />
     </Router>
-  );
+  )
 }
 
 const Wrapper = styled.div`
@@ -115,4 +104,4 @@ const LoaderWrapper = styled.div`
   display:flex;
   justify-content: center;
 `
-export default App;
+export default App

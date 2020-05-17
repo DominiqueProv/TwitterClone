@@ -1,49 +1,55 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
 import { Icon } from 'react-icons-kit'
 import { repeat } from 'react-icons-kit/feather/repeat'
-import ActionBox from './ActionBox';
-import { Link } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import ActionBox from './ActionBox'
+import { Link, useHistory } from 'react-router-dom'
 
 const TweetDetailCard = ({ tweet }) => {
-  let history = useHistory();
+  const history = useHistory()
 
-  function handleClick() {
-    history.push(`/${tweet.author.handle}`);
+  function handleClick () {
+    history.push(`/${tweet.author.handle}`)
   }
-// 
+  //
   return (
-    <Wrapper 
-      data-name='wrapper' 
-      // tabIndex="0" 
-      aria-label='View tweet'>
-      <div data-name='box'
+    <Wrapper
+      data-name='wrapper'
+      // tabIndex="0"
+      aria-label='View tweet'
+    >
+      <div
+        data-name='box'
         key={tweet.id}
-        style={{ borderBottom: "1px solid #e6ecf0", padding: '12px 0' }}
+        style={{ borderBottom: '1px solid #e6ecf0', padding: '12px 0' }}
       >
         {tweet.retweetFrom &&
-          <p style={{ color: 'gray', fontSize: ".8em" }}>
-            <Icon style={{ padding: '0 15px 0 30px' }}
+          <p style={{ color: 'gray', fontSize: '.8em' }}>
+            <Icon
+              style={{ padding: '0 15px 0 30px' }}
               size={15}
               icon={repeat}
             />{tweet.retweetFrom.handle} Remeowed
           </p>}
         <Content>
           <div>
-            <Avatar src={tweet.author.avatarSrc} alt="avatar" />
+            <Avatar src={tweet.author.avatarSrc} alt='avatar' />
           </div>
           <div>
             <p style={{ padding: '0 0 7px 0' }}>
-              <a onClick={handleClick}
-                style={{ fontWeight: '700', cursor: 'pointer' }}>{tweet.author.displayName}</a>
+              <a
+                onClick={handleClick}
+                style={{ fontWeight: '700', cursor: 'pointer' }}
+              >{tweet.author.displayName}
+              </a>
               <span style={{ color: 'gray', paddingLeft: '10px' }}>@{tweet.author.handle} • {tweet.timestamp}</span>
             </p>
             <p style={{ width: '480px' }}>{tweet.status}</p>
             {tweet.media.length > 0 &&
-                <MainPic src={tweet.media[0].url}
-                  alt='img' />
-            }
+              <MainPic
+                src={tweet.media[0].url}
+                alt='img'
+              />}
             <ActionBox tweetId={tweet.id} />
           </div>
         </Content>

@@ -1,20 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
-import styled from 'styled-components';
-import { Icon } from 'react-icons-kit';
-import { mapPin } from 'react-icons-kit/feather/mapPin';
-import { calendar } from 'react-icons-kit/feather/calendar';
-import { useParams } from 'react-router-dom';
-import TweetCard from './TweetCard';
+import React, { useEffect, useState, useContext } from 'react'
+import styled from 'styled-components'
+import { Icon } from 'react-icons-kit'
+import { mapPin } from 'react-icons-kit/feather/mapPin'
+import { calendar } from 'react-icons-kit/feather/calendar'
+import { useParams, Link } from 'react-router-dom'
+import TweetCard from './TweetCard'
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
-import { Link } from 'react-router-dom';
-import {CurrentFeedContext} from '../contexts/CurrentFeed.context';
 
+import { CurrentFeedContext } from '../contexts/CurrentFeed.context'
 
-function Profile() {
-  const { actions: {handleFollowing, handleFollowers} } = useContext(CurrentFeedContext);
-  const { profileId } = useParams();
-  const [profileData, setProfileData] = useState({});
-  const [profileTweet, setProfileTweetData] = useState({});
+function Profile () {
+  const { actions: { handleFollowing, handleFollowers } } = useContext(CurrentFeedContext)
+  const { profileId } = useParams()
+  const [profileData, setProfileData] = useState({})
+  const [profileTweet, setProfileTweetData] = useState({})
 
   // const [follow, setFollow] = useState({})
 
@@ -22,20 +21,19 @@ function Profile() {
     fetch(`/api/${profileId}/profile`)
       .then(res => res.json())
       .then(data => {
-        setProfileData(data);
+        setProfileData(data)
       }).catch(function () {
-        console.log("error");
-      });
+        console.log('error')
+      })
 
     fetch(`/api/${profileId}/feed`)
       .then(res => res.json())
       .then(data => {
-        setProfileTweetData(data);
+        setProfileTweetData(data)
       }).catch(function () {
-        console.log("error");
-      });
-  }, [profileId]);
-
+        console.log('error')
+      })
+  }, [profileId])
 
   // isBeingFollowedByYou
 
@@ -48,19 +46,18 @@ function Profile() {
       {profileData.profile && profileTweet.tweetsById ? (
         <Wrapper>
           <Title>
-            <Link to={'/'}><IconArrow size={20} icon={arrowLeft} /></Link>
-            <h1 style={{lineHeight: '20px'}}>{profileData.profile.displayName}<br/> 
-            <TweetCount>{Object.keys(profileTweet.tweetsById).length} Tweets</TweetCount>
+            <Link to='/'><IconArrow size={20} icon={arrowLeft} /></Link>
+            <h1 style={{ lineHeight: '20px' }}>{profileData.profile.displayName}<br />
+              <TweetCount>{Object.keys(profileTweet.tweetsById).length} Tweets</TweetCount>
             </h1>
           </Title>
           <div>
             <HeroBanner src={profileData.profile.bannerSrc} alt='hero banner' />
             <Avatar src={profileData.profile.avatarSrc} alt='avatar' />
           </div>
-          <div style={{ textAlign: "right", height:"70px" }}>
+          <div style={{ textAlign: 'right', height: '70px' }}>
             {profileData.profile.isBeingFollowedByYou &&
-            <FollowingIcon>Following</FollowingIcon>
-            }
+              <FollowingIcon>Following</FollowingIcon>}
           </div>
           <div style={{ margin: '0 0 0 15px' }}>
             <h2>{profileData.profile.displayName}</h2>
@@ -78,49 +75,51 @@ function Profile() {
             <div style={{ display: 'flex', margin: '20px 0 0 0' }}>
               <div style={{ marginRight: '30px' }}>
                 <p onClick={() => handleFollowing(profileId)}>
-                 <LinkFollow to ={`/${profileId}/Following`}> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
-                  Following </LinkFollow>
-                  </p>
+                  <LinkFollow to={`/${profileId}/Following`}> <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowing} </span>
+                  Following
+                  </LinkFollow>
+                </p>
               </div>
               <div>
                 <p onClick={() => handleFollowers(profileId)}>
-                <LinkFollow to ={`/${profileId}/Followers`}>
-                  <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowers} </span>
+                  <LinkFollow to={`/${profileId}/Followers`}>
+                    <span style={{ fontWeight: '700' }}>{profileData.profile.numFollowers} </span>
                 Followers
-                </LinkFollow>
+                  </LinkFollow>
                 </p>
               </div>
             </div>
           </div>
 
         </Wrapper>
-      ) : 
-      (
-          <div></div>
-        )
-        }
+      )
+        : (
+          <div />
+        )}
       {profileTweet.tweetsById ? (
         <>
-        <div style={{ borderLeft: '1px solid #e6ecf0', borderRight: '1px solid #e6ecf0' }}>
-          <Menu>
-            <MenuItem style={{ borderBottom: '3px solid #2aa9e0 ' }}><span style={{ color: '#2aa9e0' }}>Tweets</span></MenuItem>
-            <MenuItem>Media</MenuItem>
-            <MenuItem >Likes</MenuItem>
-          </Menu>
-          
+          <div style={{ borderLeft: '1px solid #e6ecf0', borderRight: '1px solid #e6ecf0' }}>
+            <Menu>
+              <MenuItem style={{ borderBottom: '3px solid #2aa9e0 ' }}><span style={{ color: '#2aa9e0' }}>Tweets</span></MenuItem>
+              <MenuItem>Media</MenuItem>
+              <MenuItem>Likes</MenuItem>
+            </Menu>
+
             {
               Object.values(profileTweet.tweetsById).map(tweet => (
-                <TweetCard tweet={tweet}
+                <TweetCard
+                  tweet={tweet}
                   key={tweet.id}
                 />
-              )).reverse()}
+              )).reverse()
+            }
           </div>
         </>
       ) : (
-          <div></div>
-        )}
+        <div />
+      )}
     </>
-  );
+  )
 }
 
 const Menu = styled.div`
@@ -178,7 +177,6 @@ font-weight: 400;
 color: gray;
 `
 
-
 const FollowingIcon = styled.button`
 color: white;
 background-color: #2aa9e0;
@@ -217,4 +215,4 @@ const LinkFollow = styled(Link)`
     }
 `
 
-export default Profile;
+export default Profile

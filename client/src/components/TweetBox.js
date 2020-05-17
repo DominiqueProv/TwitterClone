@@ -1,20 +1,12 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { CurrentFeedContext } from '../contexts/CurrentFeed.context';
-<<<<<<< Updated upstream
 import { TweetContext } from '../contexts/Tweet.Context';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const TweetBox = () => {
   const { currentFeedState, actions: { handleSubmitTweet } } = useContext(CurrentFeedContext);
   const { actions: { handleClose } } = useContext(TweetContext);
-=======
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-const TweetBox = () => {
-  const { currentUserState } = useContext(CurrentUserContext);
-  const { currentFeedState, actions: {handleSubmitTweet} } = useContext(CurrentFeedContext);
->>>>>>> Stashed changes
 
   const [input, setInput] = useState("")
   let textColor = { color: 'lightgray' };
@@ -45,7 +37,6 @@ const TweetBox = () => {
                   <p style={textColor}>{280 - input.length}</p>
                 </div>
                 <div>
-<<<<<<< Updated upstream
                   <Input
                     disabled={input.length === 0}
                     type="submit"
@@ -58,14 +49,6 @@ const TweetBox = () => {
                     }}
                   />
                   {/* {currentFeedState.status === 'awaiting-response' ? (<CircularProgress size={20} color="inherit" />) : ('Meow')} */}
-=======
-                  <Input 
-                    disabled={input.status.length === 0} 
-                    type="submit" 
-                    value="Meow" 
-                    onClick={() => handleSubmitTweet(input)}/>
-                    {/* {currentFeedState.status === 'awaiting-response' ? (<CircularProgress size={20} color="inherit" />) : ('Meow')} */}
->>>>>>> Stashed changes
                   {/* </Input> */}
                 </div>
               </FormFooter>

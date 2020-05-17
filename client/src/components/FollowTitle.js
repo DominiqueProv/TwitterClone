@@ -1,19 +1,18 @@
-import React from 'react';
+import React from 'react'
 import { arrowLeft } from 'react-icons-kit/feather/arrowLeft'
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Icon } from 'react-icons-kit';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Icon } from 'react-icons-kit'
 
-const FollowTitle = ({profileId}) => {
-
-  return(
+const FollowTitle = ({ profileId }) => {
+  return (
     <Title>
-    <Link to={`/${profileId}`}><IconArrow size={20} icon={arrowLeft} /></Link>
-    <h1 style={{ lineHeight: '20px' }}> @{profileId}<br />
-      <TweetCount>Life is good</TweetCount>
-    </h1>
-  </Title>
-  );
+      <Link to={`/${profileId}`}><IconArrow size={20} icon={arrowLeft} /></Link>
+      <h1 style={{ lineHeight: '20px' }}> @{profileId}<br />
+        <TweetCount>Life is good</TweetCount>
+      </h1>
+    </Title>
+  )
 }
 
 const Title = styled.div`

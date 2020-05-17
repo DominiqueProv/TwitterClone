@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-function Bookmarks() {
+function Bookmarks () {
   return (
     <div>
-     <h1>Bookmark</h1>
+      <h1>Bookmark</h1>
     </div>
-  );
+  )
 }
 
-export default Bookmarks;
+export default Bookmarks
