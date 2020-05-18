@@ -10,7 +10,7 @@ const users = {
     bio: 'Best friends with @treasurymog.',
     followingIds: ['treasurymog'],
     followerIds: ['treasurymog'],
-    likeIds: ['1212689921057665024']
+    likeIds: ['1212689921057665024'],
   },
   treasurymog: {
     handle: 'treasurymog',
@@ -24,15 +24,14 @@ const users = {
       'I live and work at the Treasury as a mouser but I also have a paw in the finances. Here to help lighten up the political world. Unofficial.',
     followingIds: ['diplomog', 'giantcat9'],
     followerIds: ['diplomog', 'giantcat9'],
-    likeIds: ['1209791721099411456']
+    likeIds: ['1209791721099411456'],
   },
   giantcat9: {
     handle: 'giantcat9',
     displayName: 'Giant Military Cats',
     avatarSrc:
       'https://pbs.twimg.com/profile_images/1203323662591504384/GwxdsfNA_400x400.jpg',
-    bannerSrc:
-      'https://pbs.twimg.com/profile_banners/1168513974763171840/1578494728/1500x500',
+    bannerSrc: '/assets/giant-banner.jpeg',
     location: undefined,
     url: undefined,
     joined: '2019-09-01T18:00',
@@ -40,9 +39,9 @@ const users = {
       'Just giant cats with military hardware. \nInstagram: @giantmilitarycats',
     followingIds: ['treasurymog'],
     followerIds: ['treasurymog'],
-    likeIds: []
-  }
-}
+    likeIds: [],
+  },
+};
 
 const tweets = {
   // TreasuryMog
@@ -53,7 +52,7 @@ const tweets = {
     sortedTimestamp: '2020-01-19T09:14:00+00:00',
     retweetOf: '1209791721099411456',
     likedBy: [],
-    retweetedBy: []
+    retweetedBy: [],
   },
   '1212689921057665024': {
     id: '1212689921057665024',
@@ -67,9 +66,9 @@ const tweets = {
     media: [
       {
         type: 'img',
-        url: '/assets/ENRXDPKWwAEJqFu.jpeg'
-      }
-    ]
+        url: '/assets/ENRXDPKWwAEJqFu.jpeg',
+      },
+    ],
   },
 
   // Diplomog
@@ -82,7 +81,7 @@ const tweets = {
     retweetedBy: ['treasurymog'],
     status:
       "If you're a 🇬🇧 diplomat abroad today, let me know where you are and what you're up to!",
-    media: []
+    media: [],
   },
 
   '1215324598067245056r2': {
@@ -92,7 +91,7 @@ const tweets = {
     sortedTimestamp: '2020-01-19T09:14:00+00:00',
     retweetOf: '1215324598067245056',
     likedBy: [],
-    retweetedBy: []
+    retweetedBy: [],
   },
 
   '1214624813723136002': {
@@ -108,9 +107,9 @@ Maybe a more diplomatic approach will work 🤔`,
     media: [
       {
         type: 'img',
-        url: '/assets/diplomog-yarn.png'
-      }
-    ]
+        url: '/assets/diplomog-yarn.png',
+      },
+    ],
   },
   '1209788222324256768': {
     id: '1209788222324256768',
@@ -125,9 +124,9 @@ Special wishes to all my diplomats, far from home at this time of year, serving 
     media: [
       {
         type: 'img',
-        url: '/assets/EMoH94cXYAAM5Jj.jpeg'
-      }
-    ]
+        url: '/assets/EMoH94cXYAAM5Jj.jpeg',
+      },
+    ],
   },
   '1212021009320161280': {
     id: '1212021009320161280',
@@ -144,17 +143,9 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     media: [
       {
         type: 'img',
-        url: '/assets/ENH2rRrWwAARmsZ.jpeg'
-      }
-      // {
-      //   type: 'img',
-      //   url: '/assets/ENH2rTvWwAYTqQW.jpeg',
-      // },
-      // {
-      //   type: 'img',
-      //   url: '/assets/ENH2rYeXYAEAIk7.jpeg',
-      // },
-    ]
+        url: '/assets/ENH2rRrWwAARmsZ.jpeg',
+      },
+    ],
   },
   // Giant Military Cats
   '1215337574526525440': {
@@ -169,9 +160,9 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EN2_AttWkAE5PPA?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EN2_AttWkAE5PPA?format=jpg&name=medium',
+      },
+    ],
   },
   '1215324598067245056': {
     id: '1215324598067245056',
@@ -185,9 +176,9 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EN2zNYXWoAEqe1u?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EN2zNYXWoAEqe1u?format=jpg&name=medium',
+      },
+    ],
   },
   '1215288136026284032': {
     id: '1215288136026284032',
@@ -201,9 +192,9 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EN2SATMXUAAk1KW?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EN2SATMXUAAk1KW?format=jpg&name=medium',
+      },
+    ],
   },
   '1215286068716736512': {
     id: '1215286068716736512',
@@ -212,8 +203,9 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     sortedTimestamp: '2019-12-29T22:19:00+00:00',
     likedBy: [],
     retweetedBy: [],
-    status: '"The principle of giant military cats deterrence states that a country’s possession of giant military cats discourages other countries from using giant military cats".',
-    media: []
+    status:
+      '"The principle of giant military cats deterrence states that a country’s possession of giant military cats discourages other countries from using giant military cats".',
+    media: [],
   },
   '1215277385404309504': {
     id: '1215277385404309504',
@@ -230,9 +222,9 @@ https://morrisanimalrefuge.org/adopt/storm `,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EN2IQ50W4AMz3VY?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EN2IQ50W4AMz3VY?format=jpg&name=medium',
+      },
+    ],
   },
   '1216044243980095488': {
     id: '1216044243980095488',
@@ -246,9 +238,9 @@ https://morrisanimalrefuge.org/adopt/storm `,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EOBBt4RWsAE9dBn?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EOBBt4RWsAE9dBn?format=jpg&name=medium',
+      },
+    ],
   },
   '1215996774806106114': {
     id: '1215996774806106114',
@@ -263,9 +255,9 @@ by Lady Butler / 1881`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EOAWiDjX0AA8JR-?format=jpg&name=large'
-      }
-    ]
+          'https://pbs.twimg.com/media/EOAWiDjX0AA8JR-?format=jpg&name=large',
+      },
+    ],
   },
   '1215991148579315713': {
     id: '1215991148579315713',
@@ -279,9 +271,9 @@ by Lady Butler / 1881`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EOARYNrX4AE1qTN?format=jpg&name=medium'
-      }
-    ]
+          'https://pbs.twimg.com/media/EOARYNrX4AE1qTN?format=jpg&name=medium',
+      },
+    ],
   },
   '1215953505451638784': {
     id: '1215953505451638784',
@@ -295,13 +287,13 @@ by Lady Butler / 1881`,
       {
         type: 'img',
         url:
-          'https://pbs.twimg.com/media/EN_vOBvW4AAnbML?format=jpg&name=medium'
-      }
-    ]
-  }
-}
+          'https://pbs.twimg.com/media/EN_vOBvW4AAnbML?format=jpg&name=medium',
+      },
+    ],
+  },
+};
 
 module.exports = {
   users,
-  tweets
-}
+  tweets,
+};
