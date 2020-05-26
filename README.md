@@ -15,9 +15,8 @@
 <img src="images/follower-page.png" width="600px"/>
 
 ##### Built with
-
-<a href="https://reactjs.org/" >React</a><br>
-<a href="https://nodejs.org/en/"> Node.js</a>
+React/Hooks
+Backend: Node.js/Express
 
 ### Setup
 
